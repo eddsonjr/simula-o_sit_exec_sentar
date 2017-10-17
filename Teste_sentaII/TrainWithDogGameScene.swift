@@ -88,7 +88,10 @@ class TrainWithDogGameScene: SKScene {
        
         if Helper.porcentagemGeralDoPrgoresso == 45 {
             Helper.treinarComVoz = true
+            Helper.quantidadeDeTentativasAntesTreino = 0
+            Helper.treinarComVoz = true
             chamarCenaAnterior()
+            return
         }
         
         
@@ -113,8 +116,10 @@ class TrainWithDogGameScene: SKScene {
     
     func chamarCenaAnterior() {
         
+        
+        guard let gameScene = SKScene(fileNamed: "GameScene") else { return }
         let fadeTransition = SKTransition.crossFade(withDuration: 0.5)
-        self.view?.presentScene(Helper.firstScene, transition: fadeTransition)
+        self.view?.presentScene(gameScene, transition: fadeTransition)
         
     }
 

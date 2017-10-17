@@ -128,6 +128,7 @@ class GameScene: SKScene {
         //chamar a tela de treinamento do cachorro
         if Helper.quantidadeDeTentativasAntesTreino == 3 {
             self.loadNewScene()
+            return
         }
         
 
@@ -165,5 +166,15 @@ class GameScene: SKScene {
         self.podeInterceptar = true
         
     }
+    
+    
+    
+    
+    func verificarEAtualizarCenaParaTreinamento() {
+        
+    }
+    
+    
+    
     
 }
