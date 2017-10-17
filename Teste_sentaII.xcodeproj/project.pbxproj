@@ -8,19 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		ADEEB7031F9551F100E6B0BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEEB7021F9551F100E6B0BB /* AppDelegate.swift */; };
-		ADEEB7051F9551F100E6B0BB /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = ADEEB7041F9551F100E6B0BB /* GameScene.sks */; };
 		ADEEB7071F9551F100E6B0BB /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = ADEEB7061F9551F100E6B0BB /* Actions.sks */; };
 		ADEEB7091F9551F100E6B0BB /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEEB7081F9551F100E6B0BB /* GameScene.swift */; };
 		ADEEB70B1F9551F100E6B0BB /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEEB70A1F9551F100E6B0BB /* GameViewController.swift */; };
 		ADEEB70E1F9551F100E6B0BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADEEB70C1F9551F100E6B0BB /* Main.storyboard */; };
 		ADEEB7101F9551F100E6B0BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADEEB70F1F9551F100E6B0BB /* Assets.xcassets */; };
 		ADEEB7131F9551F100E6B0BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADEEB7111F9551F100E6B0BB /* LaunchScreen.storyboard */; };
+		ADEEB71B1F9552B100E6B0BB /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = ADEEB71A1F9552B100E6B0BB /* GameScene.sks */; };
+		ADEEB71D1F95530C00E6B0BB /* TrainWithDog.sks in Resources */ = {isa = PBXBuildFile; fileRef = ADEEB71C1F95530C00E6B0BB /* TrainWithDog.sks */; };
+		ADEEB71F1F95531B00E6B0BB /* TrainWithDogGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEEB71E1F95531B00E6B0BB /* TrainWithDogGameScene.swift */; };
+		ADEEB7211F95537400E6B0BB /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEEB7201F95537400E6B0BB /* Helper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		ADEEB6FF1F9551F100E6B0BB /* Teste_sentaII.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Teste_sentaII.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADEEB7021F9551F100E6B0BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		ADEEB7041F9551F100E6B0BB /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		ADEEB7061F9551F100E6B0BB /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		ADEEB7081F9551F100E6B0BB /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		ADEEB70A1F9551F100E6B0BB /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -28,6 +30,10 @@
 		ADEEB70F1F9551F100E6B0BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ADEEB7121F9551F100E6B0BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ADEEB7141F9551F100E6B0BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ADEEB71A1F9552B100E6B0BB /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		ADEEB71C1F95530C00E6B0BB /* TrainWithDog.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TrainWithDog.sks; sourceTree = "<group>"; };
+		ADEEB71E1F95531B00E6B0BB /* TrainWithDogGameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainWithDogGameScene.swift; sourceTree = "<group>"; };
+		ADEEB7201F95537400E6B0BB /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,14 +67,17 @@
 			isa = PBXGroup;
 			children = (
 				ADEEB7021F9551F100E6B0BB /* AppDelegate.swift */,
-				ADEEB7041F9551F100E6B0BB /* GameScene.sks */,
+				ADEEB71A1F9552B100E6B0BB /* GameScene.sks */,
 				ADEEB7061F9551F100E6B0BB /* Actions.sks */,
+				ADEEB71C1F95530C00E6B0BB /* TrainWithDog.sks */,
 				ADEEB7081F9551F100E6B0BB /* GameScene.swift */,
+				ADEEB71E1F95531B00E6B0BB /* TrainWithDogGameScene.swift */,
 				ADEEB70A1F9551F100E6B0BB /* GameViewController.swift */,
 				ADEEB70C1F9551F100E6B0BB /* Main.storyboard */,
 				ADEEB70F1F9551F100E6B0BB /* Assets.xcassets */,
 				ADEEB7111F9551F100E6B0BB /* LaunchScreen.storyboard */,
 				ADEEB7141F9551F100E6B0BB /* Info.plist */,
+				ADEEB7201F95537400E6B0BB /* Helper.swift */,
 			);
 			path = Teste_sentaII;
 			sourceTree = "<group>";
@@ -134,8 +143,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADEEB70E1F9551F100E6B0BB /* Main.storyboard in Resources */,
-				ADEEB7051F9551F100E6B0BB /* GameScene.sks in Resources */,
+				ADEEB71B1F9552B100E6B0BB /* GameScene.sks in Resources */,
 				ADEEB7101F9551F100E6B0BB /* Assets.xcassets in Resources */,
+				ADEEB71D1F95530C00E6B0BB /* TrainWithDog.sks in Resources */,
 				ADEEB7131F9551F100E6B0BB /* LaunchScreen.storyboard in Resources */,
 				ADEEB7071F9551F100E6B0BB /* Actions.sks in Resources */,
 			);
@@ -150,6 +160,8 @@
 			files = (
 				ADEEB7091F9551F100E6B0BB /* GameScene.swift in Sources */,
 				ADEEB70B1F9551F100E6B0BB /* GameViewController.swift in Sources */,
+				ADEEB7211F95537400E6B0BB /* Helper.swift in Sources */,
+				ADEEB71F1F95531B00E6B0BB /* TrainWithDogGameScene.swift in Sources */,
 				ADEEB7031F9551F100E6B0BB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

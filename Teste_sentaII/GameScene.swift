@@ -9,102 +9,161 @@
 import SpriteKit
 import GameplayKit
 
+
+
 class GameScene: SKScene {
     
-    var entities = [GKEntity]()
-    var graphs = [String : GKGraph]()
+    var petisco: SKSpriteNode?
+    var cachorro: SKSpriteNode?
+    var ponto_sentar: SKSpriteNode?
+    var label_qtTentativas: SKLabelNode?
+    var podeInterceptar: Bool = true
     
-    private var lastUpdateTime : TimeInterval = 0
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
+    
+    override func didMove(to view: SKView){
+        
+        print("In didMove")
+        self.petisco = self.childNode(withName: "petisco") as? SKSpriteNode
+        self.cachorro = self.childNode(withName: "cachorro") as? SKSpriteNode
+        self.ponto_sentar = self.childNode(withName: "ponto_senta") as? SKSpriteNode
+        self.label_qtTentativas = self.childNode(withName: "qt_Tentativas") as? SKLabelNode
+        
+        //Inicializando a label
+        self.label_qtTentativas?.text = String(Helper.quantidadeDeTentativasAntesTreino)
+        
+    }
     
     override func sceneDidLoad() {
-
-        self.lastUpdateTime = 0
         
-        // Get label node from scene and store it for use later
-        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-        if let label = self.label {
-            label.alpha = 0.0
-            label.run(SKAction.fadeIn(withDuration: 2.0))
-        }
         
-        // Create shape node to use during mouse interaction
-        let w = (self.size.width + self.size.height) * 0.05
-        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
-        
-        if let spinnyNode = self.spinnyNode {
-            spinnyNode.lineWidth = 2.5
-            
-            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
-            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-                                              SKAction.fadeOut(withDuration: 0.5),
-                                              SKAction.removeFromParent()]))
-        }
     }
+    
+    
     
     
     func touchDown(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.green
-            self.addChild(n)
-        }
+        
+        
     }
+    
+    
+    
     
     func touchMoved(toPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.blue
-            self.addChild(n)
-        }
+        
     }
+    
+    
     
     func touchUp(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.red
-            self.addChild(n)
-        }
+        
     }
+    
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
-        }
         
-        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
+        
     }
+    
+    
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
+        for touch in touches {
+            let location = touch.location(in: self)
+            print("Movendo...")
+            self.petisco?.position = location
+            
+            
+            if ((self.petisco?.intersects(self.ponto_sentar!))! && self.podeInterceptar) {
+                print("Atingiu o ponto para sentar")
+                
+                //removendo a interacao do usuario com a tela
+                view?.isUserInteractionEnabled = false
+                self.podeInterceptar = false
+                
+                let newTexture = SKTexture(image: #imageLiteral(resourceName: "dog_sit"))
+                self.cachorro?.texture = newTexture
+                
+                //Atualizando o contador de tentativas e printando na tela
+                Helper.quantidadeDeTentativasAntesTreino = Helper.quantidadeDeTentativasAntesTreino + 1
+                self.label_qtTentativas?.text = String(Helper.quantidadeDeTentativasAntesTreino)
+                
+                
+                
+                
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+                    self.recolocarSprites()
+                
+                })
+                
+                
+            }
+        }
+        
+        
     }
+    
+    
+    
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+        
     }
     
+    
+    
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+        
     }
+    
+    
+    
     
     
     override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
         
-        // Initialize _lastUpdateTime if it has not already been
-        if (self.lastUpdateTime == 0) {
-            self.lastUpdateTime = currentTime
+        //verificando se ja foram realizada as 3 tentativas de treinamento do cachorro para depois
+        //chamar a tela de treinamento do cachorro
+        if Helper.quantidadeDeTentativasAntesTreino == 3 {
+            self.loadNewScene()
         }
         
-        // Calculate time since last update
-        let dt = currentTime - self.lastUpdateTime
+
         
-        // Update entities
-        for entity in self.entities {
-            entity.update(deltaTime: dt)
-        }
         
-        self.lastUpdateTime = currentTime
     }
+    
+    
+    
+    
+    
+    func loadNewScene() {
+        
+//        guard let TrainScene = SKScene(fileNamed: "TrainWithDog") else { return }
+//        let fadeTransition = SKTransition.crossFade(withDuration: 0.5)
+//        view?.presentScene(TrainScene, transition: fadeTransition)
+        
+    
+    
+    }
+    
+    
+    
+    func recolocarSprites() {
+        
+        //voltando o petisco para a posicao atual
+        self.petisco?.position = CGPoint(x: 304, y: 143)
+        
+        //mudando a textura do cachorro para ele em pe novamente
+        self.cachorro?.texture = SKTexture(image: #imageLiteral(resourceName: "dog"))
+        
+        
+        //colocando a interacao da tela com o usuario novamente
+        view?.isUserInteractionEnabled = true
+        self.podeInterceptar = true
+        
+    }
+    
 }
