@@ -11,10 +11,10 @@ import UIKit
 import SpriteKit
 
 class Helper {
-    
-    static var quantidadeDeTentativasAntesTreino: Int = 0
+
     static var tamanhoBarraDeProgresso: Float = 0
     static var porcentagemGeralDoPrgoresso: Float = 0
+    static var etapaTreinamento: Int = 1
     
     
     static var treinarComVoz: Bool = false

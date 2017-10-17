@@ -18,6 +18,7 @@ class GameScene: SKScene {
     var ponto_sentar: SKSpriteNode?
     var label_qtTentativas: SKLabelNode?
     var podeInterceptar: Bool = true
+    var quantidadeDeTentativasAntesTreino: Int = 0
     
     
     override func didMove(to view: SKView){
@@ -29,7 +30,11 @@ class GameScene: SKScene {
         self.label_qtTentativas = self.childNode(withName: "qt_Tentativas") as? SKLabelNode
         
         //Inicializando a label
-        self.label_qtTentativas?.text = String(Helper.quantidadeDeTentativasAntesTreino)
+        self.label_qtTentativas?.text = String(self.quantidadeDeTentativasAntesTreino)
+        
+        
+        //verificando as etapas do treinamento
+        verificarEtapaTreinamento()
         
     }
     
@@ -71,7 +76,6 @@ class GameScene: SKScene {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
-            print("Movendo...")
             self.petisco?.position = location
             
             
@@ -86,11 +90,18 @@ class GameScene: SKScene {
                 self.cachorro?.texture = newTexture
                 
                 //Atualizando o contador de tentativas e printando na tela
-                Helper.quantidadeDeTentativasAntesTreino = Helper.quantidadeDeTentativasAntesTreino + 1
-                self.label_qtTentativas?.text = String(Helper.quantidadeDeTentativasAntesTreino)
+                self.quantidadeDeTentativasAntesTreino = self.quantidadeDeTentativasAntesTreino + 1
+                self.label_qtTentativas?.text = String(quantidadeDeTentativasAntesTreino)
                 
                 
+                //verificando se ja e para colocar o comando de voz
+                if Helper.treinarComVoz {
+                    print("[GameScene]: ADICIONAR COMANDO DE VOZ")
+                }
                 
+                if Helper.treinarComGesto {
+                    print("[GameScene]: ADICIONAR GESTO")
+                }
                 
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
@@ -126,7 +137,7 @@ class GameScene: SKScene {
         
         //verificando se ja foram realizada as 3 tentativas de treinamento do cachorro para depois
         //chamar a tela de treinamento do cachorro
-        if Helper.quantidadeDeTentativasAntesTreino == 3 {
+        if self.quantidadeDeTentativasAntesTreino == 3 {
             self.loadNewScene()
             return
         }
@@ -170,11 +181,20 @@ class GameScene: SKScene {
     
     
     
-    func verificarEAtualizarCenaParaTreinamento() {
+    func verificarEtapaTreinamento() {
+        
+        if Helper.treinarComVoz{
+            //coloque aqui os elementos responsaveis por ter qeu gerir o treinamento com voz
+            print("[GameScene]: TEM QUE TREINAR COM VOZ")
+        }
+        
+        
+        if Helper.treinarComGesto {
+            //coloque aqui os elementos responsaveis por ter que gerir o treinamento com gestos.
+            print("[GameScene]: TEM QUE TREINAR COM GESTO")
+        }
         
     }
-    
-    
     
     
 }

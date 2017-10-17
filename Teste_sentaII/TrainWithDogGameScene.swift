@@ -25,10 +25,12 @@ class TrainWithDogGameScene: SKScene {
         print("NA DIDMOVETOVIEW DO BARRA DE PROGRESSO")
         view.isUserInteractionEnabled = true
         
-        
         self.ossoVazado1 = self.childNode(withName: "ossoVazado1") as? SKSpriteNode
         self.barraProgresso = self.childNode(withName: "barraProgresso") as? SKSpriteNode
-        self.barraProgresso?.alpha = 0.0
+        
+        //Verifica as condicoes do progresso de treinamento para configurar a barra de progresso
+        verificarAndamentoDoProcessoDeTreinamento()
+       
     
     }
     
@@ -86,12 +88,33 @@ class TrainWithDogGameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         
        
-        if Helper.porcentagemGeralDoPrgoresso == 45 {
-            Helper.treinarComVoz = true
-            Helper.quantidadeDeTentativasAntesTreino = 0
+        //Se o progresso ja chegou em determinada porcentagem o treinamento estava ocorrendo sem voz
+        // carregar a cena anterior e setar o treinamento para comecar com voz
+        if Helper.porcentagemGeralDoPrgoresso == 45 && Helper.treinarComVoz == false {
+            print("[TELA DE PROGRESSO]: Adicionar comando de voz")
             Helper.treinarComVoz = true
             chamarCenaAnterior()
             return
+        }
+        
+        
+        //Se o progresso ja chegou em <75%> e ja houve o treinamento com voz, entao chamar a tela
+        //anterior e treinar com voz e gesto
+        if Helper.porcentagemGeralDoPrgoresso == 90 && Helper.treinarComVoz {
+            print("[TELA DE PROGRESSO]: Adicionar gesto")
+            Helper.treinarComGesto = true
+            chamarCenaAnterior()
+            return
+        }
+        
+        
+        //Se o progresso ja chegou em 100% e houve os treinamentos com voz e com gesto, chamar a tela
+        // de feedback pois o exercicio terminou
+        if Helper.treinarComGesto && Helper.treinarComVoz {
+            if Helper.porcentagemGeralDoPrgoresso >= 150 {
+                 print("CHAMAR A TELA DE FEEDBACK")
+            }
+           
         }
         
         
@@ -102,6 +125,7 @@ class TrainWithDogGameScene: SKScene {
     
     
     func atualizarBarraProgresso(crescimento: CGFloat){
+        
         self.barraProgresso?.alpha = 1.0
         Helper.tamanhoBarraDeProgresso = (Float((self.barraProgresso?.size.width)! + crescimento))
         Helper.porcentagemGeralDoPrgoresso = Helper.porcentagemGeralDoPrgoresso + 15
@@ -123,6 +147,26 @@ class TrainWithDogGameScene: SKScene {
         
     }
 
+    
+    
+    
+    
+    //Esta funcao e responsavel por verificar o andamento do adestramento do animal e setar as condicoes
+    //e configuracoes dos elementos na tela.
+    func verificarAndamentoDoProcessoDeTreinamento() {
+        
+        //Se a porcentagem de treinamento é zero, entao a barra de progresso nao existe ou esta vazia
+        if Helper.porcentagemGeralDoPrgoresso == 0{
+            self.barraProgresso?.alpha = 0.0
+        }else if Helper.porcentagemGeralDoPrgoresso > 0 {
+            self.barraProgresso?.alpha = 1.0
+            self.barraProgresso?.size = CGSize(width: Int(Helper.tamanhoBarraDeProgresso), height: 35)
+        }
+        
+        
+        
+        
+    }
     
 
 
