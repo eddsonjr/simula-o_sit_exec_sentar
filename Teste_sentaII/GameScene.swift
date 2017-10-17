@@ -141,9 +141,9 @@ class GameScene: SKScene {
     
     func loadNewScene() {
         
-//        guard let TrainScene = SKScene(fileNamed: "TrainWithDog") else { return }
-//        let fadeTransition = SKTransition.crossFade(withDuration: 0.5)
-//        view?.presentScene(TrainScene, transition: fadeTransition)
+        guard let TrainScene = SKScene(fileNamed: "TrainWithDog") else { return }
+        let fadeTransition = SKTransition.crossFade(withDuration: 0.5)
+        view?.presentScene(TrainScene, transition: fadeTransition)
         
     
     

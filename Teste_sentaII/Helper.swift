@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SpriteKit
 
 class Helper {
     
@@ -17,6 +18,5 @@ class Helper {
     
     static var treinarComVoz: Bool = false
     static var treinarComGesto: Bool = false
-    
     
 }
