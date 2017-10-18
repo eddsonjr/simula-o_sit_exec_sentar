@@ -10,6 +10,8 @@
 		AD2E430E1F967F2E003DD316 /* SCLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E430D1F967F2E003DD316 /* SCLExtensions.swift */; };
 		AD2E43101F967F3C003DD316 /* SCLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E430F1F967F3C003DD316 /* SCLAlertView.swift */; };
 		AD2E43121F96AEA8003DD316 /* SCLAlertView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E43111F96AEA8003DD316 /* SCLAlertView+Extension.swift */; };
+		ADC2778B1F96D3C6006B28F3 /* SimpleAudioPlayback.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC2778A1F96D3C6006B28F3 /* SimpleAudioPlayback.swift */; };
+		ADC2778E1F96D56A006B28F3 /* latidoPos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADC2778D1F96D56A006B28F3 /* latidoPos.mp3 */; };
 		ADEEB7031F9551F100E6B0BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEEB7021F9551F100E6B0BB /* AppDelegate.swift */; };
 		ADEEB7071F9551F100E6B0BB /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = ADEEB7061F9551F100E6B0BB /* Actions.sks */; };
 		ADEEB7091F9551F100E6B0BB /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEEB7081F9551F100E6B0BB /* GameScene.swift */; };
@@ -27,6 +29,8 @@
 		AD2E430D1F967F2E003DD316 /* SCLExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCLExtensions.swift; sourceTree = "<group>"; };
 		AD2E430F1F967F3C003DD316 /* SCLAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCLAlertView.swift; sourceTree = "<group>"; };
 		AD2E43111F96AEA8003DD316 /* SCLAlertView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SCLAlertView+Extension.swift"; sourceTree = "<group>"; };
+		ADC2778A1F96D3C6006B28F3 /* SimpleAudioPlayback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleAudioPlayback.swift; sourceTree = "<group>"; };
+		ADC2778D1F96D56A006B28F3 /* latidoPos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = latidoPos.mp3; sourceTree = "<group>"; };
 		ADEEB6FF1F9551F100E6B0BB /* Teste_sentaII.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Teste_sentaII.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADEEB7021F9551F100E6B0BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ADEEB7061F9551F100E6B0BB /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
@@ -62,6 +66,23 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
+		ADC277891F96D293006B28F3 /* AudioSystem */ = {
+			isa = PBXGroup;
+			children = (
+				ADC2778A1F96D3C6006B28F3 /* SimpleAudioPlayback.swift */,
+				ADC2778C1F96D550006B28F3 /* arquivos_audio */,
+			);
+			name = AudioSystem;
+			sourceTree = "<group>";
+		};
+		ADC2778C1F96D550006B28F3 /* arquivos_audio */ = {
+			isa = PBXGroup;
+			children = (
+				ADC2778D1F96D56A006B28F3 /* latidoPos.mp3 */,
+			);
+			name = arquivos_audio;
+			sourceTree = "<group>";
+		};
 		ADEEB6F61F9551F000E6B0BB = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +102,7 @@
 		ADEEB7011F9551F100E6B0BB /* Teste_sentaII */ = {
 			isa = PBXGroup;
 			children = (
+				ADC277891F96D293006B28F3 /* AudioSystem */,
 				AD2E430C1F967F1D003DD316 /* Extensions */,
 				ADEEB7021F9551F100E6B0BB /* AppDelegate.swift */,
 				ADEEB71A1F9552B100E6B0BB /* GameScene.sks */,
@@ -163,6 +185,7 @@
 				ADEEB71B1F9552B100E6B0BB /* GameScene.sks in Resources */,
 				ADEEB7101F9551F100E6B0BB /* Assets.xcassets in Resources */,
 				ADEEB71D1F95530C00E6B0BB /* TrainWithDog.sks in Resources */,
+				ADC2778E1F96D56A006B28F3 /* latidoPos.mp3 in Resources */,
 				ADEEB7131F9551F100E6B0BB /* LaunchScreen.storyboard in Resources */,
 				ADEEB7071F9551F100E6B0BB /* Actions.sks in Resources */,
 			);
@@ -183,6 +206,7 @@
 				ADEEB71F1F95531B00E6B0BB /* TrainWithDogGameScene.swift in Sources */,
 				AD2E43101F967F3C003DD316 /* SCLAlertView.swift in Sources */,
 				ADEEB7031F9551F100E6B0BB /* AppDelegate.swift in Sources */,
+				ADC2778B1F96D3C6006B28F3 /* SimpleAudioPlayback.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

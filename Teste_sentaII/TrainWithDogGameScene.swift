@@ -87,38 +87,40 @@ class TrainWithDogGameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         
-       
+        
         //Se o progresso ja chegou em determinada porcentagem o treinamento estava ocorrendo sem voz
         // carregar a cena anterior e setar o treinamento para comecar com voz
-        if Helper.porcentagemGeralDoPrgoresso == 45 && Helper.treinarComVoz == false {
+        if Helper.porcentagemGeralDoPrgoresso == 45 && Helper.estagioTreinamento == trainStage.somenteComPetisco.rawValue{
             print("[TELA DE PROGRESSO]: Adicionar comando de voz")
-            Helper.treinarComVoz = true
+            Helper.estagioTreinamento = trainStage.somenteComVoz.rawValue
             chamarCenaAnterior()
             return
+
         }
         
-        
-        //Se o progresso ja chegou em <75%> e ja houve o treinamento com voz, entao chamar a tela
+        //Se o progresso ja chegou em <%> e ja houve o treinamento com voz, entao chamar a tela
         //anterior e treinar com voz e gesto
-        if Helper.porcentagemGeralDoPrgoresso == 90 && Helper.treinarComVoz {
+        if Helper.porcentagemGeralDoPrgoresso == 90 && Helper.estagioTreinamento == trainStage.somenteComVoz.rawValue {
             print("[TELA DE PROGRESSO]: Adicionar gesto")
-            Helper.treinarComGesto = true
+            Helper.estagioTreinamento = trainStage.comVozEGesto.rawValue
             chamarCenaAnterior()
             return
         }
+        
+        
         
         
         //Se o progresso ja chegou em 100% e houve os treinamentos com voz e com gesto, chamar a tela
         // de feedback pois o exercicio terminou
-        if Helper.treinarComGesto && Helper.treinarComVoz {
-            if Helper.porcentagemGeralDoPrgoresso >= 150 {
-                 print("CHAMAR A TELA DE FEEDBACK")
-            }
-           
+
+        if Helper.porcentagemGeralDoPrgoresso >= 150 && Helper.estagioTreinamento == trainStage.comVozEGesto.rawValue {
+            print("CHAMAR A TELA DE FEEDBACK")
+            Helper.estagioTreinamento = trainStage.treinamentoCompletado.rawValue
+            
         }
         
         
-    }
+}
     
     
     

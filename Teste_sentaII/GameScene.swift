@@ -96,22 +96,33 @@ class GameScene: SKScene {
                 self.label_qtTentativas?.text = String(quantidadeDeTentativasAntesTreino)
         
                 
-                //verificando se ja e para colocar o comando de voz
-                if Helper.treinarComVoz {
-                    print("[GameScene]: ADICIONAR COMANDO DE VOZ")
+                //Verifica o estagio em que o treinamento se encontra
+                switch Helper.estagioTreinamento {
+                    
+                    case trainStage.somenteComVoz.rawValue: //treinamento somente com voz
+                        print("[GameScene]: ADICIONAR COMANDO DE VOZ")
+                        tocarComando()
+                    case trainStage.comVozEGesto.rawValue: //Treinamento com voz e gesto
+                         print("[GameScene]: ADICIONAR GESTO E COMANDO DE VOZ ")
+                    
+                    
+                    
+                    
+                    default: //acao padrao, treinamento somente com petisco
+                        print("[GameScene]: Treinamento basico, somente com petisco")
                 }
                 
-                if Helper.treinarComGesto {
-                    print("[GameScene]: ADICIONAR GESTO")
-                }
                 
+
                 
+                /*Verifica agora a quantidade de treinos que ja foram realizados antes de treinar
+                 com o animal e tambem controla o estado das animacoes do treinamento pelo 
+                 aplicativo*/
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
                     
                     //Condicao para treinar com o cachorro
                     if self.quantidadeDeTentativasAntesTreino == 3 {
                         print("[GameScene]: Atingiu a quantidade maxima de treino")
-                        
                         
                         //chama o alerta de treinamento com o animal e depois de 3 tentativas no app
                         self.alerta.alertarWarning(titulo: "Treinar com o cachorro", textoBase: "Treine com o seu animal agora", textoBotao: "OK", completionHandler: { 
@@ -194,58 +205,39 @@ class GameScene: SKScene {
     
     func verificarEtapaTreinamento() { //VERIFICAR POSSIVEIS ERROS LOGICOS QUE PODEM OCORRER NESTA FUNCAO
         
-        if Helper.treinarComVoz{
-            //coloque aqui os elementos responsaveis por ter qeu gerir o treinamento com voz
-            print("[GameScene]: TEM QUE TREINAR COM VOZ")
+        switch Helper.estagioTreinamento {
             
-            chamarMensagem(texto: "Agora treine o seu animal dando o comando de voz", textoBotao: "OK", titulo: "Treinar com comando voz")
-        }
-        
-        
-        if Helper.treinarComGesto {
-            //coloque aqui os elementos responsaveis por ter que gerir o treinamento com gestos.
-            print("[GameScene]: TEM QUE TREINAR COM GESTO")
-        }
-        
-    }
-    
-    
-    
-    
-    
-    
-    
-    func chamarMensagem(texto: String,textoBotao: String, titulo: String) {
-        let appearance = SCLAlertView.SCLAppearance(
-            showCloseButton: false
-        )
-        let alert = SCLAlertView(appearance: appearance)
-        alert.addButton(NSLocalizedString(textoBotao, comment: textoBotao), action: {
-            print("Botao pressionado")
-        
-        })
-        
-        alert.showNotice(titulo, subTitle: texto)
+            case trainStage.somenteComVoz.rawValue: //treinamento somente com voz
+            
+                //coloque aqui os elementos responsaveis por ter qeu gerir o treinamento com voz
+                print("[GameScene]: TEM QUE TREINAR COM VOZ")
+                alerta.alertarWarning(titulo: "Treinar com comando voz", textoBase: "Agora treine o seu animal dando o comando de voz", textoBotao: "OK")
 
-    }
-    
-    
-    
-    
-    func chamarMensagem(texto: String,textoBotao: String, titulo: String, completionHandler: @escaping () -> Void) {
-        let appearance = SCLAlertView.SCLAppearance(
-            showCloseButton: false
-        )
-        let alert = SCLAlertView(appearance: appearance)
-        alert.addButton(NSLocalizedString(textoBotao, comment: textoBotao), action: {
-            print("Botao pressionado")
-            completionHandler()
-        })
+            case trainStage.comVozEGesto.rawValue: //treinamento com voz e gesto
+            
+                //coloque aqui os elementos responsaveis por ter que gerir o treinamento com gestos.
+                print("[GameScene]: TEM QUE TREINAR COM GESTO")
+
+            
+            default:
+                break
+        }
         
-        alert.showNotice(titulo, subTitle: texto)
         
     }
     
+    
+    
+    
+    func tocarComando() {
+        
+        /*Aqui deve ser verificado a regiao do telefone para que carregue o audio correto*/
+        
+        
+        //por hora tocando qualquer coisa somente para testar
+        SimpleAudioPlayBack.sharedPlayback.playAudio(source: "latidoPos", type: "mp3")
+        
+    }
 
     
     
