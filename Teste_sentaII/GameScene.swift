@@ -17,6 +17,7 @@ class GameScene: SKScene {
     var cachorro: SKSpriteNode?
     var ponto_sentar: SKSpriteNode? //este ponto determina quando o cachorro ira sentar
     var ponto_cabeca: SKSpriteNode? //este ponto determina quando o cachorro ira olhar para cima
+    var main_region: SKSpriteNode? //ponto geral que abrange ambos os pontos de intersecao
     var label_qtTentativas: SKLabelNode?
     var podeInterceptarPonto2: Bool = false
     var podeInterceptarPonto1: Bool = true
@@ -32,6 +33,7 @@ class GameScene: SKScene {
         self.cachorro = self.childNode(withName: "cachorro") as? SKSpriteNode
         self.ponto_sentar = self.childNode(withName: "ponto_senta") as? SKSpriteNode
         self.ponto_cabeca = self.childNode(withName: "ponto_cabeca") as? SKSpriteNode
+        self.main_region = self.childNode(withName: "main_region") as? SKSpriteNode
         self.label_qtTentativas = self.childNode(withName: "qt_Tentativas") as? SKLabelNode
         
         //Inicializando a label
@@ -83,45 +85,45 @@ class GameScene: SKScene {
             let location = touch.location(in: self)
             self.petisco?.position = location
             
-            /*Caso o usuario tenha interceptado o ponto 1, ele troca o sprite e permite o toque 
-             no segundo ponto, caso contrario, ele volta para o sprite do cachorro normal, trava 
-             o ponto dele sentar e volta o sprite para o cachorro em pe*/
-            if ((self.petisco?.intersects(self.ponto_cabeca!))! && self.podeInterceptarPonto1) {
-                print("[Gamescene]: O cachoror esta olhando para cima")
-                let newTexture = SKTexture(image: #imageLiteral(resourceName: "dog_look_up"))
-                self.cachorro?.texture = newTexture
-                self.podeInterceptarPonto2 = true
-                self.podeInterceptarPonto1 = false
-            }
-//            }else{
-//                print("[Gamescene]: O cachorro voltou a posicao normal")
-//                let newTexture = SKTexture(image: #imageLiteral(resourceName: "dog"))
-//                self.cachorro?.texture = newTexture
-//                self.podeInterceptarPonto1 = true
-//                self.podeInterceptarPonto2 = false
-//            }
             
-            
-            
-            //se o usuario aproximar o petisco ainda mais proximo da cabeca do cachorro, ai sim
-            //ele ira sentar
-            if ((self.petisco?.intersects(self.ponto_sentar!))! && self.podeInterceptarPonto2) {
-                print("Atingiu o ponto para sentar")
+            if (self.petisco?.intersects(self.main_region!))! {
+                print("ENtrou na main_region")
+                self.podeInterceptarPonto1 = true
+                
+                /*Caso o usuario tenha interceptado o ponto 1, ele troca o sprite e permite o toque
+                 no segundo ponto, caso contrario, ele volta para o sprite do cachorro normal, trava
+                 o ponto dele sentar e volta o sprite para o cachorro em pe*/
+                if ((self.petisco?.intersects(self.ponto_cabeca!))! && self.podeInterceptarPonto1) {
+                    print("[Gamescene]: O cachoror esta olhando para cima")
+                    let newTexture = SKTexture(image: #imageLiteral(resourceName: "dog_look_up"))
+                    self.cachorro?.texture = newTexture
+                    self.podeInterceptarPonto2 = true
+                    self.podeInterceptarPonto1 = false
+                }
+                
+                
+                
+                //se o usuario aproximar o petisco ainda mais proximo da cabeca do cachorro, ai sim
+                //ele ira sentar
+                if ((self.petisco?.intersects(self.ponto_sentar!))! && self.podeInterceptarPonto2) {
+                    print("Atingiu o ponto para sentar")
                     
-                //removendo a interacao do usuario com a tela
-                view?.isUserInteractionEnabled = false
-                self.podeInterceptarPonto2 = false
+                    //removendo a interacao do usuario com a tela
+                    view?.isUserInteractionEnabled = false
+                    self.podeInterceptarPonto2 = false
+                  
+                    print("Pontos de intercepcao: ponto1>> \(self.podeInterceptarPonto1) || ponto2>> \(self.podeInterceptarPonto2)")
                     
-                let newTexture = SKTexture(image: #imageLiteral(resourceName: "dog_sit"))
-                self.cachorro?.texture = newTexture
+                    let newTexture = SKTexture(image: #imageLiteral(resourceName: "dog_sit"))
+                    self.cachorro?.texture = newTexture
                     
-                //Atualizando o contador de tentativas e printando na tela
-                self.quantidadeDeTentativasAntesTreino = self.quantidadeDeTentativasAntesTreino + 1
-                self.label_qtTentativas?.text = String(quantidadeDeTentativasAntesTreino)
+                    //Atualizando o contador de tentativas e printando na tela
+                    self.quantidadeDeTentativasAntesTreino = self.quantidadeDeTentativasAntesTreino + 1
+                    self.label_qtTentativas?.text = String(quantidadeDeTentativasAntesTreino)
                     
                     
-                //Verifica o estagio em que o treinamento se encontra
-                switch Helper.estagioTreinamento {
+                    //Verifica o estagio em que o treinamento se encontra
+                    switch Helper.estagioTreinamento {
                         
                     case trainStage.somenteComVoz.rawValue: //treinamento somente com voz
                         print("[GameScene]: ADICIONAR COMANDO DE VOZ")
@@ -137,33 +139,39 @@ class GameScene: SKScene {
                     
                     
                     
-                /*Verifica agora a quantidade de treinos que ja foram realizados antes de treinar
-                com o animal e tambem controla o estado das animacoes do treinamento pelo
-                aplicativo*/
-                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+                    /*Verifica agora a quantidade de treinos que ja foram realizados antes de treinar
+                     com o animal e tambem controla o estado das animacoes do treinamento pelo
+                     aplicativo*/
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
                         
-                    //Condicao para treinar com o cachorro
-                    if self.quantidadeDeTentativasAntesTreino == 3 {
-                        print("[GameScene]: Atingiu a quantidade maxima de treino")
+                        //Condicao para treinar com o cachorro
+                        if self.quantidadeDeTentativasAntesTreino == 3 {
+                            print("[GameScene]: Atingiu a quantidade maxima de treino")
                             
-                        //chama o alerta de treinamento com o animal e depois de 3 tentativas no app
-                        self.alerta.alertarWarning(titulo: "Treinar com o cachorro", textoBase: "Treine com o seu animal agora", textoBotao: "OK", completionHandler: {
-                            self.loadNewScene()
-                        })
+                            //chama o alerta de treinamento com o animal e depois de 3 tentativas no app
+                            self.alerta.alertarWarning(titulo: "Treinar com o cachorro", textoBase: "Treine com o seu animal agora", textoBotao: "OK", completionHandler: {
+                                self.loadNewScene()
+                            })
                             
                             
                             
-                    }else {
-                        self.recolocarSprites()
-                    }
-                    
+                        }else {
+                            self.recolocarSprites()
+                        }
+                        
                     }) //Fecha o mainqueue
                     
                     
                 } //Fecha o if do ponto de sentar
 
-                
-                
+            
+            }else{ //fecha o if do main_region
+                let newTexture = SKTexture(image: #imageLiteral(resourceName: "dog"))
+                self.cachorro?.texture = newTexture
+                self.podeInterceptarPonto1 = false
+                self.podeInterceptarPonto2 = false
+            }
+            
             
         } //fecha o for touch in touches
         
