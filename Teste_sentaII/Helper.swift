@@ -14,7 +14,7 @@ class Helper {
 
     static var tamanhoBarraDeProgresso: Float = 0
     static var porcentagemGeralDoPrgoresso: Float = 0
-    static var etapaTreinamento: Int = 1
+    
     
     
     static var treinarComVoz: Bool = false

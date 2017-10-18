@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		AD2E430E1F967F2E003DD316 /* SCLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E430D1F967F2E003DD316 /* SCLExtensions.swift */; };
 		AD2E43101F967F3C003DD316 /* SCLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E430F1F967F3C003DD316 /* SCLAlertView.swift */; };
+		AD2E43121F96AEA8003DD316 /* SCLAlertView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E43111F96AEA8003DD316 /* SCLAlertView+Extension.swift */; };
 		ADEEB7031F9551F100E6B0BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEEB7021F9551F100E6B0BB /* AppDelegate.swift */; };
 		ADEEB7071F9551F100E6B0BB /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = ADEEB7061F9551F100E6B0BB /* Actions.sks */; };
 		ADEEB7091F9551F100E6B0BB /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEEB7081F9551F100E6B0BB /* GameScene.swift */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		AD2E430D1F967F2E003DD316 /* SCLExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCLExtensions.swift; sourceTree = "<group>"; };
 		AD2E430F1F967F3C003DD316 /* SCLAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCLAlertView.swift; sourceTree = "<group>"; };
+		AD2E43111F96AEA8003DD316 /* SCLAlertView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SCLAlertView+Extension.swift"; sourceTree = "<group>"; };
 		ADEEB6FF1F9551F100E6B0BB /* Teste_sentaII.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Teste_sentaII.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADEEB7021F9551F100E6B0BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ADEEB7061F9551F100E6B0BB /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				AD2E430D1F967F2E003DD316 /* SCLExtensions.swift */,
+				AD2E43111F96AEA8003DD316 /* SCLAlertView+Extension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 				ADEEB7091F9551F100E6B0BB /* GameScene.swift in Sources */,
 				ADEEB70B1F9551F100E6B0BB /* GameViewController.swift in Sources */,
 				ADEEB7211F95537400E6B0BB /* Helper.swift in Sources */,
+				AD2E43121F96AEA8003DD316 /* SCLAlertView+Extension.swift in Sources */,
 				ADEEB71F1F95531B00E6B0BB /* TrainWithDogGameScene.swift in Sources */,
 				AD2E43101F967F3C003DD316 /* SCLAlertView.swift in Sources */,
 				ADEEB7031F9551F100E6B0BB /* AppDelegate.swift in Sources */,

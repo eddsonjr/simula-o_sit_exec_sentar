@@ -19,6 +19,8 @@ class GameScene: SKScene {
     var label_qtTentativas: SKLabelNode?
     var podeInterceptar: Bool = true
     var quantidadeDeTentativasAntesTreino: Int = 0
+    var alerta: SCLAlertView = SCLAlertView()
+    
     
     
     override func didMove(to view: SKView){
@@ -92,7 +94,7 @@ class GameScene: SKScene {
                 //Atualizando o contador de tentativas e printando na tela
                 self.quantidadeDeTentativasAntesTreino = self.quantidadeDeTentativasAntesTreino + 1
                 self.label_qtTentativas?.text = String(quantidadeDeTentativasAntesTreino)
-                
+        
                 
                 //verificando se ja e para colocar o comando de voz
                 if Helper.treinarComVoz {
@@ -105,8 +107,26 @@ class GameScene: SKScene {
                 
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
-                    self.recolocarSprites()
-                
+                    
+                    //Condicao para treinar com o cachorro
+                    if self.quantidadeDeTentativasAntesTreino == 3 {
+                        print("[GameScene]: Atingiu a quantidade maxima de treino")
+                        
+                        
+                        //chama o alerta de treinamento com o animal e depois de 3 tentativas no app
+                        self.alerta.alertarWarning(titulo: "Treinar com o cachorro", textoBase: "Treine com o seu animal agora", textoBotao: "OK", completionHandler: { 
+                            self.loadNewScene()
+                        })
+                        
+                        
+                        
+                    }else {
+                        self.recolocarSprites()
+
+                    }
+                    
+                    
+                    
                 })
                 
                 
@@ -135,16 +155,7 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         
-        //verificando se ja foram realizada as 3 tentativas de treinamento do cachorro para depois
-        //chamar a tela de treinamento do cachorro
-        if self.quantidadeDeTentativasAntesTreino == 3 {
-            self.loadNewScene()
-            return
-        }
-        
 
-        
-        
     }
     
     
@@ -181,11 +192,13 @@ class GameScene: SKScene {
     
     
     
-    func verificarEtapaTreinamento() {
+    func verificarEtapaTreinamento() { //VERIFICAR POSSIVEIS ERROS LOGICOS QUE PODEM OCORRER NESTA FUNCAO
         
         if Helper.treinarComVoz{
             //coloque aqui os elementos responsaveis por ter qeu gerir o treinamento com voz
             print("[GameScene]: TEM QUE TREINAR COM VOZ")
+            
+            chamarMensagem(texto: "Agora treine o seu animal dando o comando de voz", textoBotao: "OK", titulo: "Treinar com comando voz")
         }
         
         
@@ -195,6 +208,49 @@ class GameScene: SKScene {
         }
         
     }
+    
+    
+    
+    
+    
+    
+    
+    func chamarMensagem(texto: String,textoBotao: String, titulo: String) {
+        let appearance = SCLAlertView.SCLAppearance(
+            showCloseButton: false
+        )
+        let alert = SCLAlertView(appearance: appearance)
+        alert.addButton(NSLocalizedString(textoBotao, comment: textoBotao), action: {
+            print("Botao pressionado")
+        
+        })
+        
+        alert.showNotice(titulo, subTitle: texto)
+
+    }
+    
+    
+    
+    
+    func chamarMensagem(texto: String,textoBotao: String, titulo: String, completionHandler: @escaping () -> Void) {
+        let appearance = SCLAlertView.SCLAppearance(
+            showCloseButton: false
+        )
+        let alert = SCLAlertView(appearance: appearance)
+        alert.addButton(NSLocalizedString(textoBotao, comment: textoBotao), action: {
+            print("Botao pressionado")
+            completionHandler()
+        })
+        
+        alert.showNotice(titulo, subTitle: texto)
+        
+    }
+    
+
+    
+    
+
+
     
     
 }
