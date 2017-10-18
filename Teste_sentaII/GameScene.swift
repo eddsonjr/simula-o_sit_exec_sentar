@@ -15,7 +15,8 @@ class GameScene: SKScene {
     
     var petisco: SKSpriteNode?
     var cachorro: SKSpriteNode?
-    var ponto_sentar: SKSpriteNode?
+    var ponto_sentar: SKSpriteNode? //este ponto determina quando o cachorro ira sentar
+    var ponto_cabeca: SKSpriteNode? //este ponto determina quando o cachorro ira olhar para cima
     var label_qtTentativas: SKLabelNode?
     var podeInterceptar: Bool = true
     var quantidadeDeTentativasAntesTreino: Int = 0
@@ -80,6 +81,13 @@ class GameScene: SKScene {
             let location = touch.location(in: self)
             self.petisco?.position = location
             
+            //primeiramente o usuario devera chegar ate o ponto da cabeca do cachorro
+            //para que ele olhe para cima.
+            
+          
+            
+            
+            
             
             if ((self.petisco?.intersects(self.ponto_sentar!))! && self.podeInterceptar) {
                 print("Atingiu o ponto para sentar")
@@ -104,6 +112,7 @@ class GameScene: SKScene {
                         tocarComando()
                     case trainStage.comVozEGesto.rawValue: //Treinamento com voz e gesto
                          print("[GameScene]: ADICIONAR GESTO E COMANDO DE VOZ ")
+                         tocarComando()
                     
                     
                     
@@ -217,6 +226,7 @@ class GameScene: SKScene {
             
                 //coloque aqui os elementos responsaveis por ter que gerir o treinamento com gestos.
                 print("[GameScene]: TEM QUE TREINAR COM GESTO")
+                alerta.alertarWarning(titulo: "Treinar também com gestos", textoBase: "Agora treine com gestos e voz", textoBotao: "OK")
 
             
             default:
