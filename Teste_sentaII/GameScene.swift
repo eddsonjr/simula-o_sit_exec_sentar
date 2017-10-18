@@ -26,6 +26,10 @@ class GameScene: SKScene {
     
     
     
+    
+    var teste: SKSpriteNode?
+    
+    
     override func didMove(to view: SKView){
         
         print("In didMove")
@@ -42,6 +46,12 @@ class GameScene: SKScene {
         
         //verificando as etapas do treinamento
         verificarEtapaTreinamento()
+        
+        
+        self.teste = self.childNode(withName: "teste") as? SKSpriteNode
+        
+        
+        
         
     }
     
@@ -85,9 +95,13 @@ class GameScene: SKScene {
             let location = touch.location(in: self)
             self.petisco?.position = location
             
-            
             if (self.petisco?.intersects(self.main_region!))! {
-                print("ENtrou na main_region")
+                print("Entrou na main_region")
+                
+                print("Pontos de intercepcao: ponto1>> \(self.podeInterceptarPonto1) || ponto2>> \(self.podeInterceptarPonto2)")
+                
+                
+                
                 self.podeInterceptarPonto1 = true
                 
                 /*Caso o usuario tenha interceptado o ponto 1, ele troca o sprite e permite o toque
@@ -99,6 +113,8 @@ class GameScene: SKScene {
                     self.cachorro?.texture = newTexture
                     self.podeInterceptarPonto2 = true
                     self.podeInterceptarPonto1 = false
+                    
+                    
                 }
                 
                 
@@ -112,8 +128,6 @@ class GameScene: SKScene {
                     view?.isUserInteractionEnabled = false
                     self.podeInterceptarPonto2 = false
                   
-                    print("Pontos de intercepcao: ponto1>> \(self.podeInterceptarPonto1) || ponto2>> \(self.podeInterceptarPonto2)")
-                    
                     let newTexture = SKTexture(image: #imageLiteral(resourceName: "dog_sit"))
                     self.cachorro?.texture = newTexture
                     
@@ -197,7 +211,6 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         
-
     }
     
     
@@ -227,8 +240,8 @@ class GameScene: SKScene {
         
         //colocando a interacao da tela com o usuario novamente
         view?.isUserInteractionEnabled = true
-        self.podeInterceptarPonto2 = true
-        self.podeInterceptarPonto1 = true
+        self.podeInterceptarPonto2 = false
+        self.podeInterceptarPonto1 = false
         
     }
     

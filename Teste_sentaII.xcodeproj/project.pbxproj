@@ -12,6 +12,7 @@
 		AD2E43121F96AEA8003DD316 /* SCLAlertView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2E43111F96AEA8003DD316 /* SCLAlertView+Extension.swift */; };
 		ADC2778B1F96D3C6006B28F3 /* SimpleAudioPlayback.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC2778A1F96D3C6006B28F3 /* SimpleAudioPlayback.swift */; };
 		ADC2778E1F96D56A006B28F3 /* latidoPos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADC2778D1F96D56A006B28F3 /* latidoPos.mp3 */; };
+		ADE016491F97F26A00B161C6 /* SKSpriteNode+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE016481F97F26900B161C6 /* SKSpriteNode+Extensions.swift */; };
 		ADEEB7031F9551F100E6B0BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEEB7021F9551F100E6B0BB /* AppDelegate.swift */; };
 		ADEEB7071F9551F100E6B0BB /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = ADEEB7061F9551F100E6B0BB /* Actions.sks */; };
 		ADEEB7091F9551F100E6B0BB /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEEB7081F9551F100E6B0BB /* GameScene.swift */; };
@@ -31,6 +32,7 @@
 		AD2E43111F96AEA8003DD316 /* SCLAlertView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SCLAlertView+Extension.swift"; sourceTree = "<group>"; };
 		ADC2778A1F96D3C6006B28F3 /* SimpleAudioPlayback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleAudioPlayback.swift; sourceTree = "<group>"; };
 		ADC2778D1F96D56A006B28F3 /* latidoPos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = latidoPos.mp3; sourceTree = "<group>"; };
+		ADE016481F97F26900B161C6 /* SKSpriteNode+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKSpriteNode+Extensions.swift"; sourceTree = "<group>"; };
 		ADEEB6FF1F9551F100E6B0BB /* Teste_sentaII.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Teste_sentaII.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADEEB7021F9551F100E6B0BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ADEEB7061F9551F100E6B0BB /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 			children = (
 				AD2E430D1F967F2E003DD316 /* SCLExtensions.swift */,
 				AD2E43111F96AEA8003DD316 /* SCLAlertView+Extension.swift */,
+				ADE016481F97F26900B161C6 /* SKSpriteNode+Extensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 				ADEEB7091F9551F100E6B0BB /* GameScene.swift in Sources */,
 				ADEEB70B1F9551F100E6B0BB /* GameViewController.swift in Sources */,
 				ADEEB7211F95537400E6B0BB /* Helper.swift in Sources */,
+				ADE016491F97F26A00B161C6 /* SKSpriteNode+Extensions.swift in Sources */,
 				AD2E43121F96AEA8003DD316 /* SCLAlertView+Extension.swift in Sources */,
 				ADEEB71F1F95531B00E6B0BB /* TrainWithDogGameScene.swift in Sources */,
 				AD2E43101F967F3C003DD316 /* SCLAlertView.swift in Sources */,
