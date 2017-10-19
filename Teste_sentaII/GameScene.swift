@@ -39,11 +39,6 @@ class GameScene: SKScene {
         //verificando as etapas do treinamento
         verificarEtapaTreinamento()
 
-        
-        
-        //Teste
-        configurarSpritesNaCena()
-        
     }
     
     
@@ -165,23 +160,11 @@ class GameScene: SKScene {
         switch Helper.estagioTreinamento {
             case trainStage.somenteComPetisco.rawValue: //treinamento somente com o petisco
                 
-                self.petisco = self.childNode(withName: "petisco") as? SKSpriteNode
-                self.cachorro = self.childNode(withName: "cachorro") as? SKSpriteNode
-                self.ponto_sentar = self.childNode(withName: "ponto_senta") as? SKSpriteNode
-                self.ponto_cabeca = self.childNode(withName: "ponto_cabeca") as? SKSpriteNode
-                self.main_region = self.childNode(withName: "main_region") as? SKSpriteNode
-                self.label_qtTentativas = self.childNode(withName: "qt_Tentativas") as? SKLabelNode
+                configurarSpritesNaCena()
             
             case trainStage.somenteComVoz.rawValue: //treinamento com petisco e voz
             
-                self.petisco = self.childNode(withName: "petisco") as? SKSpriteNode
-                self.cachorro = self.childNode(withName: "cachorro") as? SKSpriteNode
-                self.ponto_sentar = self.childNode(withName: "ponto_senta") as? SKSpriteNode
-                self.ponto_cabeca = self.childNode(withName: "ponto_cabeca") as? SKSpriteNode
-                self.main_region = self.childNode(withName: "main_region") as? SKSpriteNode
-                self.label_qtTentativas = self.childNode(withName: "qt_Tentativas") as? SKLabelNode
-                
-                
+                configurarSpritesNaCena()
                 
                 //coloque aqui os elementos responsaveis por ter qeu gerir o treinamento com voz
                 print("[GameScene]: TEM QUE TREINAR COM VOZ")
@@ -189,6 +172,7 @@ class GameScene: SKScene {
 
             case trainStage.comVozEGesto.rawValue: //treinamento com voz e gesto
             
+                
                 
                 configurarSpritesParaTreinarComVozEGesto()
                 //coloque aqui os elementos responsaveis por ter que gerir o treinamento com gestos.
@@ -237,7 +221,7 @@ class GameScene: SKScene {
         
         /*Verifica se o usuario esta com o petisco dentro da area de atuacao dos dois pontos que ele
           tem que passar */
-        if (self.petisco?.intersects(self.main_region!))! {
+        if (self.petisco!.intersects(self.main_region!)) {
             print("Entrou na main_region")
             
             print("Pontos de intercepcao: ponto1>> \(self.podeInterceptarPonto1) || ponto2>> \(self.podeInterceptarPonto2)")
@@ -248,7 +232,7 @@ class GameScene: SKScene {
             /*Caso o usuario tenha interceptado o ponto 1, ele troca o sprite e permite o toque
              no segundo ponto, caso contrario, ele volta para o sprite do cachorro normal, trava
              o ponto dele sentar e volta o sprite para o cachorro em pe*/
-            if ((self.petisco?.intersects(self.ponto_cabeca!))! && self.podeInterceptarPonto1) {
+            if ((self.petisco!.intersects(self.ponto_cabeca!)) && self.podeInterceptarPonto1) {
                 print("[Gamescene]: O cachoror esta olhando para cima")
                 let newTexture = SKTexture(image: #imageLiteral(resourceName: "dog_look_up"))
                 self.cachorro?.texture = newTexture
@@ -262,7 +246,7 @@ class GameScene: SKScene {
             
             //se o usuario aproximar o petisco ainda mais proximo da cabeca do cachorro, ai sim
             //ele ira sentar
-            if ((self.petisco?.intersects(self.ponto_sentar!))! && self.podeInterceptarPonto2) {
+            if ((self.petisco!.intersects(self.ponto_sentar!)) && self.podeInterceptarPonto2) {
                 print("Atingiu o ponto para sentar")
                 
                 
@@ -327,32 +311,12 @@ class GameScene: SKScene {
     
     
     
-    /*Esta funcao serve para remover os sprites anteriores e configurar os novos para a etapa de treinamento via gesto e comando de voz*/
-    func configurarSpritesParaTreinarComVozEGesto() {
-        
        
-     
-        /*Removendo os sprites anteriores*/
-        self.ponto_cabeca?.removeFromParent()
-        self.ponto_cabeca = nil
-        self.ponto_sentar?.removeFromParent()
-        self.ponto_sentar = nil
-        self.main_region?.removeFromParent()
-        self.main_region = nil
-        self.petisco?.removeFromParent()
-        self.petisco = nil
-        
-        
-        
-        
-        
-        
-    }
-    
-    
     
     /*Esta funcao tem por obejtivo configurar os sprites na hora em que a cena é criada*/
     func configurarSpritesNaCena() {
+        
+      
         
         if Helper.estagioTreinamento == trainStage.somenteComPetisco.rawValue || Helper.estagioTreinamento == trainStage.somenteComVoz.rawValue {
             
@@ -381,6 +345,7 @@ class GameScene: SKScene {
             
             //Configurando o sprite do petisco
             self.petisco = SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "snack")))
+            self.petisco?.size = CGSize(width: 64, height: 64)
             self.petisco?.alpha = 1.0
             self.petisco?.position = CGPoint(x: 305, y: 145)
             self.addChild(self.petisco!)
