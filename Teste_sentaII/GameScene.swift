@@ -22,12 +22,10 @@ class GameScene: SKScene {
     var podeInterceptarPonto2: Bool = false
     var podeInterceptarPonto1: Bool = true
     var quantidadeDeTentativasAntesTreino: Int = 0
+    var podeRemoverInteracaoDaTela: Bool = false
     var alerta: SCLAlertView = SCLAlertView()
     
     
-    
-    
-    var teste: SKSpriteNode?
     
     
     override func didMove(to view: SKView){
@@ -48,8 +46,7 @@ class GameScene: SKScene {
         verificarEtapaTreinamento()
         
         
-        self.teste = self.childNode(withName: "teste") as? SKSpriteNode
-        
+             
         
         
         
@@ -95,6 +92,9 @@ class GameScene: SKScene {
             let location = touch.location(in: self)
             self.petisco?.position = location
             
+            
+         
+            
             if (self.petisco?.intersects(self.main_region!))! {
                 print("Entrou na main_region")
                 
@@ -102,7 +102,6 @@ class GameScene: SKScene {
                 
                 
                 
-                self.podeInterceptarPonto1 = true
                 
                 /*Caso o usuario tenha interceptado o ponto 1, ele troca o sprite e permite o toque
                  no segundo ponto, caso contrario, ele volta para o sprite do cachorro normal, trava
@@ -124,10 +123,9 @@ class GameScene: SKScene {
                 if ((self.petisco?.intersects(self.ponto_sentar!))! && self.podeInterceptarPonto2) {
                     print("Atingiu o ponto para sentar")
                     
-                    //removendo a interacao do usuario com a tela
-                    view?.isUserInteractionEnabled = false
+                   
                     self.podeInterceptarPonto2 = false
-                  
+                    
                     let newTexture = SKTexture(image: #imageLiteral(resourceName: "dog_sit"))
                     self.cachorro?.texture = newTexture
                     
@@ -177,25 +175,22 @@ class GameScene: SKScene {
                     
                     
                 } //Fecha o if do ponto de sentar
-
-            
+                
+                
             }else{ //fecha o if do main_region
                 let newTexture = SKTexture(image: #imageLiteral(resourceName: "dog"))
                 self.cachorro?.texture = newTexture
-                self.podeInterceptarPonto1 = false
+                self.podeInterceptarPonto1 = true
                 self.podeInterceptarPonto2 = false
             }
-            
-            
-        } //fecha o for touch in touches
-        
-        
+         }
     }
     
     
     
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    
         
     }
     
@@ -212,11 +207,11 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         
     }
-    
-    
-    
-    
-    
+
+
+
+
+
     func loadNewScene() {
         
         guard let TrainScene = SKScene(fileNamed: "TrainWithDog") else { return }
@@ -226,29 +221,29 @@ class GameScene: SKScene {
     
     
     }
-    
-    
-    
+
+
+
     func recolocarSprites() {
-        
-        //voltando o petisco para a posicao atual
-        self.petisco?.position = CGPoint(x: 304, y: 143)
         
         //mudando a textura do cachorro para ele em pe novamente
         self.cachorro?.texture = SKTexture(image: #imageLiteral(resourceName: "dog"))
         
         
         //colocando a interacao da tela com o usuario novamente
-        view?.isUserInteractionEnabled = true
+        //view?.isUserInteractionEnabled = true
         self.podeInterceptarPonto2 = false
         self.podeInterceptarPonto1 = false
+        
+        animacaoPetiscoRetornar()
         
     }
     
     
     
     
-    func verificarEtapaTreinamento() { //VERIFICAR POSSIVEIS ERROS LOGICOS QUE PODEM OCORRER NESTA FUNCAO
+    func verificarEtapaTreinamento() {
+        
         
         switch Helper.estagioTreinamento {
             
@@ -284,7 +279,27 @@ class GameScene: SKScene {
         SimpleAudioPlayBack.sharedPlayback.playAudio(source: "latidoPos", type: "mp3")
         
     }
+    
+    
+    
+    
+    //Animacao de fazer o petisco voltar
+    func animacaoPetiscoRetornar() {
+        
+        let moveAnimation = SKAction.move(to: CGPoint(x: 304, y: 143), duration: 2)
+        self.petisco?.run(moveAnimation)
+        
+    }
 
+    
+    
+    
+    
+    /*Esta funcao e responsavel por gerenciar o treinamento nas duas primeiras etapas, tanto somente com o petisco quanto com o petisco e o som*/
+    func treinamentoComOuSemVoz() {
+        
+    }
+    
     
     
 
