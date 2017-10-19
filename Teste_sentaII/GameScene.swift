@@ -171,7 +171,7 @@ class GameScene: SKScene {
                 self.ponto_cabeca = self.childNode(withName: "ponto_cabeca") as? SKSpriteNode
                 self.main_region = self.childNode(withName: "main_region") as? SKSpriteNode
                 self.label_qtTentativas = self.childNode(withName: "qt_Tentativas") as? SKLabelNode
-                        
+            
             case trainStage.somenteComVoz.rawValue: //treinamento com petisco e voz
             
                 self.petisco = self.childNode(withName: "petisco") as? SKSpriteNode
@@ -356,11 +356,35 @@ class GameScene: SKScene {
         
         if Helper.estagioTreinamento == trainStage.somenteComPetisco.rawValue || Helper.estagioTreinamento == trainStage.somenteComVoz.rawValue {
             
+            
+            // configurando sprite do main_region
             self.main_region = SKSpriteNode(color: UIColor.brown, size: CGSize(width: 165, height: 145))
             self.main_region?.alpha = 0.4
             self.main_region?.position = CGPoint(x: -181, y: -58)
-            self.addChild(self.main_region)
+            self.addChild(self.main_region!)
            
+            
+            
+            //configurando o sprite do ponto da cabeca
+            self.ponto_cabeca = SKSpriteNode(color: UIColor.blue, size: CGSize(width: 24, height: 24))
+            self.ponto_cabeca?.alpha = 0.4
+            self.ponto_cabeca?.position = CGPoint(x: -115.5, y: -1.5)
+            self.addChild(self.ponto_cabeca!)
+            
+            
+            //configurando o sprite do ponto de sentar
+            self.ponto_sentar = SKSpriteNode(color: UIColor.red, size: CGSize(width: 24, height: 24))
+            self.ponto_sentar?.alpha = 0.4
+            self.ponto_sentar?.position = CGPoint(x: -202.5, y: -23)
+            self.addChild(self.ponto_sentar!)
+            
+            
+            //Configurando o sprite do petisco
+            self.petisco = SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "snack")))
+            self.petisco?.alpha = 1.0
+            self.petisco?.position = CGPoint(x: 305, y: 145)
+            self.addChild(self.petisco!)
+            
         
         }
         
