@@ -31,11 +31,7 @@ class GameScene: SKScene {
     override func didMove(to view: SKView){
         
         print("In didMove")
-        
-        //Inicializando a label
-        self.label_qtTentativas?.text = String(self.quantidadeDeTentativasAntesTreino)
-        
-        
+    
         //verificando as etapas do treinamento
         verificarEtapaTreinamento()
 
@@ -174,7 +170,7 @@ class GameScene: SKScene {
             
                 
                 
-                configurarSpritesParaTreinarComVozEGesto()
+             
                 //coloque aqui os elementos responsaveis por ter que gerir o treinamento com gestos.
                 print("[GameScene]: TEM QUE TREINAR COM GESTO")
                 alerta.alertarWarning(titulo: "Treinar também com gestos", textoBase: "Agora treine com gestos e voz", textoBotao: "OK")
@@ -279,7 +275,7 @@ class GameScene: SKScene {
                         
                         //chama o alerta de treinamento com o animal e depois de 3 tentativas no app
                         self.alerta.alertarWarning(titulo: "Treinar com o cachorro", textoBase: "Treine com o seu animal agora", textoBotao: "OK", completionHandler: {
-                            self.configurarSpritesParaTreinarComVozEGesto()
+                           
                             self.loadNewScene()
                         })
                         
@@ -311,15 +307,20 @@ class GameScene: SKScene {
     
     
     
-       
+    
     
     /*Esta funcao tem por obejtivo configurar os sprites na hora em que a cena é criada*/
     func configurarSpritesNaCena() {
         
-      
+        self.cachorro = childNode(withName: "cachorro") as? SKSpriteNode
+        self.label_qtTentativas = childNode(withName: "qt_Tentativas") as? SKLabelNode
+        //Inicializando a label
+        self.label_qtTentativas?.text = String(self.quantidadeDeTentativasAntesTreino)
         
+
+        /*Verificando se o treinamento esta no estagio 1 ou 2 (treinando so com petisco ou so com a
+         voz)*/
         if Helper.estagioTreinamento == trainStage.somenteComPetisco.rawValue || Helper.estagioTreinamento == trainStage.somenteComVoz.rawValue {
-            
             
             // configurando sprite do main_region
             self.main_region = SKSpriteNode(color: UIColor.brown, size: CGSize(width: 165, height: 145))
@@ -351,7 +352,10 @@ class GameScene: SKScene {
             self.addChild(self.petisco!)
             
         
+        }else if Helper.estagioTreinamento == trainStage.comVozEGesto.rawValue {
+            
         }
+        
         
     }
 
