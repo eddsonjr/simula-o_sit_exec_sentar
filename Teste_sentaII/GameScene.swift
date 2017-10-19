@@ -40,6 +40,10 @@ class GameScene: SKScene {
         verificarEtapaTreinamento()
 
         
+        
+        //Teste
+        configurarSpritesNaCena()
+        
     }
     
     
@@ -342,6 +346,23 @@ class GameScene: SKScene {
         
         
         
+        
+    }
+    
+    
+    
+    /*Esta funcao tem por obejtivo configurar os sprites na hora em que a cena é criada*/
+    func configurarSpritesNaCena() {
+        
+        if Helper.estagioTreinamento == trainStage.somenteComPetisco.rawValue || Helper.estagioTreinamento == trainStage.somenteComVoz.rawValue {
+            
+            self.main_region = SKSpriteNode(color: UIColor.brown, size: CGSize(width: 165, height: 145))
+            self.main_region?.alpha = 0.4
+            self.main_region?.position = CGPoint(x: -181, y: -58)
+            self.addChild(self.main_region)
+           
+        
+        }
         
     }
 
