@@ -31,12 +31,6 @@ class GameScene: SKScene {
     override func didMove(to view: SKView){
         
         print("In didMove")
-        self.petisco = self.childNode(withName: "petisco") as? SKSpriteNode
-        self.cachorro = self.childNode(withName: "cachorro") as? SKSpriteNode
-        self.ponto_sentar = self.childNode(withName: "ponto_senta") as? SKSpriteNode
-        self.ponto_cabeca = self.childNode(withName: "ponto_cabeca") as? SKSpriteNode
-        self.main_region = self.childNode(withName: "main_region") as? SKSpriteNode
-        self.label_qtTentativas = self.childNode(withName: "qt_Tentativas") as? SKLabelNode
         
         //Inicializando a label
         self.label_qtTentativas?.text = String(self.quantidadeDeTentativasAntesTreino)
@@ -44,15 +38,15 @@ class GameScene: SKScene {
         
         //verificando as etapas do treinamento
         verificarEtapaTreinamento()
-        
-        
-             
-        
-        
+
         
     }
     
+    
+    
+    
     override func sceneDidLoad() {
+        
         
         
     }
@@ -160,20 +154,39 @@ class GameScene: SKScene {
     
     
     
-    
+    /*Esta funcao verifica a etapa atual do treinamento e realiza configuracoes de sprites e mensagens
+     a serem exibidas*/
     func verificarEtapaTreinamento() {
         
-        
         switch Helper.estagioTreinamento {
+            case trainStage.somenteComPetisco.rawValue: //treinamento somente com o petisco
+                
+                self.petisco = self.childNode(withName: "petisco") as? SKSpriteNode
+                self.cachorro = self.childNode(withName: "cachorro") as? SKSpriteNode
+                self.ponto_sentar = self.childNode(withName: "ponto_senta") as? SKSpriteNode
+                self.ponto_cabeca = self.childNode(withName: "ponto_cabeca") as? SKSpriteNode
+                self.main_region = self.childNode(withName: "main_region") as? SKSpriteNode
+                self.label_qtTentativas = self.childNode(withName: "qt_Tentativas") as? SKLabelNode
+                        
+            case trainStage.somenteComVoz.rawValue: //treinamento com petisco e voz
             
-            case trainStage.somenteComVoz.rawValue: //treinamento somente com voz
-            
+                self.petisco = self.childNode(withName: "petisco") as? SKSpriteNode
+                self.cachorro = self.childNode(withName: "cachorro") as? SKSpriteNode
+                self.ponto_sentar = self.childNode(withName: "ponto_senta") as? SKSpriteNode
+                self.ponto_cabeca = self.childNode(withName: "ponto_cabeca") as? SKSpriteNode
+                self.main_region = self.childNode(withName: "main_region") as? SKSpriteNode
+                self.label_qtTentativas = self.childNode(withName: "qt_Tentativas") as? SKLabelNode
+                
+                
+                
                 //coloque aqui os elementos responsaveis por ter qeu gerir o treinamento com voz
                 print("[GameScene]: TEM QUE TREINAR COM VOZ")
                 alerta.alertarWarning(titulo: "Treinar com comando voz", textoBase: "Agora treine o seu animal dando o comando de voz", textoBotao: "OK")
 
             case trainStage.comVozEGesto.rawValue: //treinamento com voz e gesto
             
+                
+                configurarSpritesParaTreinarComVozEGesto()
                 //coloque aqui os elementos responsaveis por ter que gerir o treinamento com gestos.
                 print("[GameScene]: TEM QUE TREINAR COM GESTO")
                 alerta.alertarWarning(titulo: "Treinar também com gestos", textoBase: "Agora treine com gestos e voz", textoBotao: "OK")
@@ -278,6 +291,7 @@ class GameScene: SKScene {
                         
                         //chama o alerta de treinamento com o animal e depois de 3 tentativas no app
                         self.alerta.alertarWarning(titulo: "Treinar com o cachorro", textoBase: "Treine com o seu animal agora", textoBotao: "OK", completionHandler: {
+                            self.configurarSpritesParaTreinarComVozEGesto()
                             self.loadNewScene()
                         })
                         
@@ -303,14 +317,33 @@ class GameScene: SKScene {
             self.podeInterceptarPonto1 = true
             self.podeInterceptarPonto2 = false
         }
-
-        
-        
-        
     }
     
     
     
+    
+    
+    /*Esta funcao serve para remover os sprites anteriores e configurar os novos para a etapa de treinamento via gesto e comando de voz*/
+    func configurarSpritesParaTreinarComVozEGesto() {
+        
+       
+     
+        /*Removendo os sprites anteriores*/
+        self.ponto_cabeca?.removeFromParent()
+        self.ponto_cabeca = nil
+        self.ponto_sentar?.removeFromParent()
+        self.ponto_sentar = nil
+        self.main_region?.removeFromParent()
+        self.main_region = nil
+        self.petisco?.removeFromParent()
+        self.petisco = nil
+        
+        
+        
+        
+        
+        
+    }
 
 
     
