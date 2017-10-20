@@ -13,16 +13,33 @@ import GameplayKit
 
 class GameScene: SKScene {
     
+    
+    //Sprites do treinamento com o petisco e/sem voz
     var petisco: SKSpriteNode?
     var cachorro: SKSpriteNode?
     var ponto_sentar: SKSpriteNode? //este ponto determina quando o cachorro ira sentar
     var ponto_cabeca: SKSpriteNode? //este ponto determina quando o cachorro ira olhar para cima
     var main_region: SKSpriteNode? //ponto geral que abrange ambos os pontos de intersecao
+    
+    
+    //Sprites do treinamento com voz e gesto
+    var mao: SKSpriteNode?
+    var ponto1: SKSpriteNode?
+    var ponto2: SKSpriteNode?
+    
+    
+    
+    //Label que indica a quantidade de exercicios a serem feitos
     var label_qtTentativas: SKLabelNode?
+    
+    
+    //Booleanos de controler da logica do exercicio com petisco e/sem voz
     var podeInterceptarPonto2: Bool = false
     var podeInterceptarPonto1: Bool = true
     var quantidadeDeTentativasAntesTreino: Int = 0
-    var podeRemoverInteracaoDaTela: Bool = false
+  
+    
+    //Variavel de alerta
     var alerta: SCLAlertView = SCLAlertView()
     
     
@@ -306,15 +323,31 @@ class GameScene: SKScene {
     
     
     
+    /*Esta funcao serve para indicar o treinamento tanto com voz quanto com gesto*/
+    func treinarComVozEGesto() {
+        
+        print("[GAMESCENE >STAGE<]: Treinamento com voz e gesto")
+        self.cachorro = childNode(withName: "cachorro") as? SKSpriteNode
+        self.label_qtTentativas = childNode(withName: "qt_Tentativas") as? SKLabelNode
+        
+        //Inicializando a label com texto 0
+        self.label_qtTentativas?.text = String(self.quantidadeDeTentativasAntesTreino)
+
+        
+
+    }
+    
     
     
     
     /*Esta funcao tem por obejtivo configurar os sprites na hora em que a cena é criada*/
     func configurarSpritesNaCena() {
         
+        print("[GAMESCENE >STAGE<]: Treinamento com petisco e/sem voz")
+        
         self.cachorro = childNode(withName: "cachorro") as? SKSpriteNode
         self.label_qtTentativas = childNode(withName: "qt_Tentativas") as? SKLabelNode
-        //Inicializando a label
+        //Inicializando a label com texto 0
         self.label_qtTentativas?.text = String(self.quantidadeDeTentativasAntesTreino)
         
 
