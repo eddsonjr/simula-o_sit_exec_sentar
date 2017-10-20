@@ -24,16 +24,13 @@ class GameScene: SKScene {
     
     //Sprites do treinamento com voz e gesto
     var mao: SKSpriteNode?
-    var ponto1_execGesto: SKSpriteNode?
-    var ponto2_execGesto: SKSpriteNode?
-    
     
     
     //Label que indica a quantidade de exercicios a serem feitos
     var label_qtTentativas: SKLabelNode?
     
     
-    //Booleanos de controler da logica do exercicio com petisco e/sem voz
+    //Booleanos de controler da logica da passagem pelos pontos
     var podeInterceptarPonto2: Bool = false
     var podeInterceptarPonto1: Bool = true
     var quantidadeDeTentativasAntesTreino: Int = 0
@@ -96,11 +93,18 @@ class GameScene: SKScene {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
-            self.petisco?.position = location
+          
+        
             
             if Helper.estagioTreinamento == trainStage.somenteComPetisco.rawValue || Helper.estagioTreinamento == trainStage.somenteComVoz.rawValue {
+                self.petisco?.position = location
                 
-                treinamentoComOuSemVoz()
+               treinamentoComOuSemVoz()
+            
+            }else if Helper.estagioTreinamento == trainStage.comVozEGesto.rawValue {
+                self.mao?.position = location
+                
+                treinamentoComVozEGesto()
             }
             
             
@@ -160,7 +164,14 @@ class GameScene: SKScene {
         self.podeInterceptarPonto2 = false
         self.podeInterceptarPonto1 = false
         
-        animacaoPetiscoRetornar()
+        
+        if Helper.estagioTreinamento == trainStage.somenteComPetisco.rawValue || Helper.estagioTreinamento ==  trainStage.somenteComVoz.rawValue {
+             self.animacaoPetiscoRetornar()
+        }else{
+            self.mao?.position = CGPoint(x: -142, y: -61)
+        }
+        
+       
         
     }
     
@@ -323,9 +334,67 @@ class GameScene: SKScene {
     
     
     /*Esta funcao serve para indicar o treinamento tanto com voz quanto com gesto*/
-    func treinarComVozEGesto() {
+    func treinamentoComVozEGesto() {
         
-       
+        if (self.mao!.intersects(self.main_region!)) {
+            print("Entrou na main_region")
+            
+            //verificando os pontos de interecacao
+            if (self.mao!.intersects(self.ponto_cabeca!)) && self.podeInterceptarPonto1 {
+                print("[GameScene]: O cachorro esta olhando para cima [treinamento com gesto]")
+                let newTexture = SKTexture(image: #imageLiteral(resourceName: "dog_look_up"))
+                self.cachorro?.texture = newTexture
+                self.podeInterceptarPonto2 = true
+                self.podeInterceptarPonto1 = false
+            }
+            
+            if ((self.mao!.intersects(self.ponto_sentar!)) && self.podeInterceptarPonto2) {
+                print("Atingiu o ponto para sentar")
+                
+                
+                self.podeInterceptarPonto2 = false
+                let newTexture = SKTexture(image: #imageLiteral(resourceName: "dog_sit"))
+                self.cachorro?.texture = newTexture
+                
+                //Atualizando o contador de tentativas e printando na tela
+                self.quantidadeDeTentativasAntesTreino = self.quantidadeDeTentativasAntesTreino + 1
+                self.label_qtTentativas?.text = String(quantidadeDeTentativasAntesTreino)
+                
+                //toca o comando
+                tocarComando()
+                
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                    
+                    //Condicao para treinar com o cachorro
+                    if self.quantidadeDeTentativasAntesTreino == 3 {
+                        print("[GameScene]: Atingiu a quantidade maxima de treino")
+                        
+                        //chama o alerta de treinamento com o animal e depois de 3 tentativas no app
+                        self.alerta.alertarWarning(titulo: "Treinar com o cachorro", textoBase: "Treine com o seu animal agora", textoBotao: "OK", completionHandler: {
+                            
+                            self.loadNewScene()
+                        })
+                        
+                        
+                        
+                    }else {
+                        self.recolocarSprites()
+                    }
+                    
+                }) //Fecha o mainqueue
+
+                
+                
+            } //fecha o if petisco intercepta ponto sentar
+            
+
+            
+        } //fecha o main region
+        
+        
+        
+        
         
 
     }
@@ -386,17 +455,17 @@ class GameScene: SKScene {
              print("[GAMESCENE >STAGE<]: Treinamento com voz e gesto")
             
             //ponto 1
-            self.ponto1_execGesto = SKSpriteNode(color: UIColor.red, size: CGSize(width: 24, height: 24))
-            self.ponto1_execGesto?.alpha = 0.5
-            self.ponto1_execGesto?.position = CGPoint(x: -140, y: -19)
-            self.addChild(self.ponto1_execGesto!)
+            self.ponto_cabeca = SKSpriteNode(color: UIColor.red, size: CGSize(width: 24, height: 24))
+            self.ponto_cabeca?.alpha = 0.5
+            self.ponto_cabeca?.position = CGPoint(x: -140, y: -20)
+            self.addChild(self.ponto_cabeca!)
             
             
             //ponto 2
-            self.ponto2_execGesto = SKSpriteNode(color: UIColor.blue, size: CGSize(width: 24, height: 24))
-            self.ponto2_execGesto?.alpha = 0.5
-            self.ponto2_execGesto?.position = CGPoint(x: -140, y: -80)
-            self.addChild(self.ponto2_execGesto!)
+            self.ponto_sentar = SKSpriteNode(color: UIColor.blue, size: CGSize(width: 24, height: 24))
+            self.ponto_sentar?.alpha = 0.5
+            self.ponto_sentar?.position = CGPoint(x: -140, y: -80)
+            self.addChild(self.ponto_sentar!)
             
             
             //configurando a regiao 
@@ -412,9 +481,6 @@ class GameScene: SKScene {
             self.mao?.position = CGPoint(x: -145, y: -135)
             self.addChild(self.mao!)
 
-            
-            
-            
             
         }
         
