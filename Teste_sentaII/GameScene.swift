@@ -24,8 +24,8 @@ class GameScene: SKScene {
     
     //Sprites do treinamento com voz e gesto
     var mao: SKSpriteNode?
-    var ponto1: SKSpriteNode?
-    var ponto2: SKSpriteNode?
+    var ponto1_execGesto: SKSpriteNode?
+    var ponto2_execGesto: SKSpriteNode?
     
     
     
@@ -185,8 +185,7 @@ class GameScene: SKScene {
 
             case trainStage.comVozEGesto.rawValue: //treinamento com voz e gesto
             
-                
-                
+                configurarSpritesNaCena()
              
                 //coloque aqui os elementos responsaveis por ter que gerir o treinamento com gestos.
                 print("[GameScene]: TEM QUE TREINAR COM GESTO")
@@ -326,13 +325,7 @@ class GameScene: SKScene {
     /*Esta funcao serve para indicar o treinamento tanto com voz quanto com gesto*/
     func treinarComVozEGesto() {
         
-        print("[GAMESCENE >STAGE<]: Treinamento com voz e gesto")
-        self.cachorro = childNode(withName: "cachorro") as? SKSpriteNode
-        self.label_qtTentativas = childNode(withName: "qt_Tentativas") as? SKLabelNode
-        
-        //Inicializando a label com texto 0
-        self.label_qtTentativas?.text = String(self.quantidadeDeTentativasAntesTreino)
-
+       
         
 
     }
@@ -343,7 +336,7 @@ class GameScene: SKScene {
     /*Esta funcao tem por obejtivo configurar os sprites na hora em que a cena é criada*/
     func configurarSpritesNaCena() {
         
-        print("[GAMESCENE >STAGE<]: Treinamento com petisco e/sem voz")
+       print("ESTAGIO TREINAMENTO: \(Helper.estagioTreinamento)")
         
         self.cachorro = childNode(withName: "cachorro") as? SKSpriteNode
         self.label_qtTentativas = childNode(withName: "qt_Tentativas") as? SKLabelNode
@@ -354,6 +347,8 @@ class GameScene: SKScene {
         /*Verificando se o treinamento esta no estagio 1 ou 2 (treinando so com petisco ou so com a
          voz)*/
         if Helper.estagioTreinamento == trainStage.somenteComPetisco.rawValue || Helper.estagioTreinamento == trainStage.somenteComVoz.rawValue {
+            
+             print("[GAMESCENE >STAGE<]: Treinamento com petisco e/sem voz")
             
             // configurando sprite do main_region
             self.main_region = SKSpriteNode(color: UIColor.brown, size: CGSize(width: 165, height: 145))
@@ -386,6 +381,40 @@ class GameScene: SKScene {
             
         
         }else if Helper.estagioTreinamento == trainStage.comVozEGesto.rawValue {
+            
+            //configurando os pontos a serem passados no exercicio com o gesto
+             print("[GAMESCENE >STAGE<]: Treinamento com voz e gesto")
+            
+            //ponto 1
+            self.ponto1_execGesto = SKSpriteNode(color: UIColor.red, size: CGSize(width: 24, height: 24))
+            self.ponto1_execGesto?.alpha = 0.5
+            self.ponto1_execGesto?.position = CGPoint(x: -140, y: -19)
+            self.addChild(self.ponto1_execGesto!)
+            
+            
+            //ponto 2
+            self.ponto2_execGesto = SKSpriteNode(color: UIColor.blue, size: CGSize(width: 24, height: 24))
+            self.ponto2_execGesto?.alpha = 0.5
+            self.ponto2_execGesto?.position = CGPoint(x: -140, y: -80)
+            self.addChild(self.ponto2_execGesto!)
+            
+            
+            //configurando a regiao 
+            self.main_region = SKSpriteNode(color: UIColor.brown, size: CGSize(width: 68, height: 202))
+            self.main_region?.alpha = 0.5
+            self.main_region?.position = CGPoint(x: -142, y: -61)
+            self.addChild(self.main_region!)
+            
+            
+            //configurando a mao para o gesto
+            self.mao = SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "hand")))
+            self.mao?.size = CGSize(width: 48, height: 48)
+            self.mao?.position = CGPoint(x: -145, y: -135)
+            self.addChild(self.mao!)
+
+            
+            
+            
             
         }
         

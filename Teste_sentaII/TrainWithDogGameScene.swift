@@ -103,11 +103,12 @@ class TrainWithDogGameScene: SKScene {
         if Helper.porcentagemGeralDoPrgoresso == 90 && Helper.estagioTreinamento == trainStage.somenteComVoz.rawValue {
             print("[TELA DE PROGRESSO]: Adicionar gesto")
             Helper.estagioTreinamento = trainStage.comVozEGesto.rawValue
+            print("TELAPROGRESSO: \(Helper.estagioTreinamento)")
             chamarCenaAnterior()
             return
         }
         
-        
+
         
         
         //Se o progresso ja chegou em 100% e houve os treinamentos com voz e com gesto, chamar a tela
