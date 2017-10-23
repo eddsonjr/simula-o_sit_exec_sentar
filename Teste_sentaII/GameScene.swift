@@ -373,7 +373,8 @@ class GameScene: SKScene {
                         //chama o alerta de treinamento com o animal e depois de 3 tentativas no app
                         self.alerta.alertarWarning(titulo: "Treinar com o cachorro", textoBase: "Treine com o seu animal agora", textoBotao: "OK", completionHandler: {
                             
-                            self.loadNewScene()
+                            //self.loadNewScene() 
+                            print("[GAMESCENE]: CHAMAR A TELA DE FEEDBACK")
                         })
                         
                         
@@ -457,21 +458,21 @@ class GameScene: SKScene {
             //ponto 1
             self.ponto_cabeca = SKSpriteNode(color: UIColor.red, size: CGSize(width: 24, height: 24))
             self.ponto_cabeca?.alpha = 0.5
-            self.ponto_cabeca?.position = CGPoint(x: -140, y: -20)
+            self.ponto_cabeca?.position = CGPoint(x: -140, y: -80)
             self.addChild(self.ponto_cabeca!)
             
             
             //ponto 2
             self.ponto_sentar = SKSpriteNode(color: UIColor.blue, size: CGSize(width: 24, height: 24))
             self.ponto_sentar?.alpha = 0.5
-            self.ponto_sentar?.position = CGPoint(x: -140, y: -80)
+            self.ponto_sentar?.position = CGPoint(x: -140, y: -20)
             self.addChild(self.ponto_sentar!)
             
             
             //configurando a regiao 
             self.main_region = SKSpriteNode(color: UIColor.brown, size: CGSize(width: 68, height: 202))
             self.main_region?.alpha = 0.5
-            self.main_region?.position = CGPoint(x: -142, y: -61)
+            self.main_region?.position = CGPoint(x: -142, y: -60)
             self.addChild(self.main_region!)
             
             
