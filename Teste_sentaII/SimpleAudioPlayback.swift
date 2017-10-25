@@ -17,7 +17,7 @@ class SimpleAudioPlayBack {
     static let sharedPlayback = SimpleAudioPlayBack()
     private var audioPlayer: AVAudioPlayer?
     
-    func playAudio(source: String,type: String){
+    func playAudio_Senta(source: String,type: String){
         do {
             let aSound = URL(fileURLWithPath: Bundle.main.path(forResource: source, ofType: type)!)
             audioPlayer = try AVAudioPlayer(contentsOf: aSound)

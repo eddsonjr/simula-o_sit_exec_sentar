@@ -220,7 +220,7 @@ class SentaGameScene: SKScene {
         
         
         //por hora tocando qualquer coisa somente para testar
-        SimpleAudioPlayBack.sharedPlayback.playAudio(source: "latidoPos", type: "mp3")
+        SimpleAudioPlayBack.sharedPlayback.playAudio_Senta(source: "latidoPos", type: "mp3")
         
     }
     
