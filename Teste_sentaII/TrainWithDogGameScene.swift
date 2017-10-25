@@ -115,7 +115,6 @@ class TrainWithDogGameScene: SKScene {
         // de feedback pois o exercicio terminou
 
         if Helper.porcentagemGeralDoPrgoresso >= 150 && Helper.estagioTreinamento == trainStage.comVozEGesto.rawValue {
-            print("CHAMAR A TELA DE FEEDBACK")
             Helper.estagioTreinamento = trainStage.treinamentoCompletado.rawValue
             
         }

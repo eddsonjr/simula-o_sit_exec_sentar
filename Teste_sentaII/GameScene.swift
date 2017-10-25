@@ -169,7 +169,7 @@ class GameScene: SKScene {
         if Helper.estagioTreinamento == trainStage.somenteComPetisco.rawValue || Helper.estagioTreinamento ==  trainStage.somenteComVoz.rawValue {
              self.animacaoPetiscoRetornar()
         }else{
-            self.mao?.position = CGPoint(x: -142, y: -150)
+            self.animacaoMaoRetornar()
         }
         
        
@@ -238,6 +238,11 @@ class GameScene: SKScene {
     
     
     //Animacao de fazer a mao voltar
+    func animacaoMaoRetornar() {
+        let moveAnimation = SKAction.move(to: CGPoint(x: -145, y: -155), duration: 2)
+        self.mao?.run(moveAnimation)
+
+    }
 
     
     
@@ -379,15 +384,8 @@ class GameScene: SKScene {
                     
                     //Condicao para treinar com o cachorro
                     if self.quantidadeDeTentativasAntesTreino == 3 {
-                        print("[GameScene]: Atingiu a quantidade maxima de treino")
                         
-                        //chama o alerta de treinamento com o animal e depois de 3 tentativas no app
-                        self.alerta.alertarWarning(titulo: "Treinar com o cachorro", textoBase: "Treine com o seu animal agora", textoBotao: "OK", completionHandler: {
-                            
-                            //self.loadNewScene() 
-                            print("[GAMESCENE]: CHAMAR A TELA DE FEEDBACK")
-                        })
-                        
+                        print("CHAMAR A TELA DE FEEDBACK AQUI")
                         
                         
                     }else {
