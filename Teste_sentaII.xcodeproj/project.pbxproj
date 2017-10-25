@@ -15,12 +15,12 @@
 		ADE016491F97F26A00B161C6 /* SKSpriteNode+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE016481F97F26900B161C6 /* SKSpriteNode+Extensions.swift */; };
 		ADEEB7031F9551F100E6B0BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEEB7021F9551F100E6B0BB /* AppDelegate.swift */; };
 		ADEEB7071F9551F100E6B0BB /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = ADEEB7061F9551F100E6B0BB /* Actions.sks */; };
-		ADEEB7091F9551F100E6B0BB /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEEB7081F9551F100E6B0BB /* GameScene.swift */; };
+		ADEEB7091F9551F100E6B0BB /* SentaGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEEB7081F9551F100E6B0BB /* SentaGameScene.swift */; };
 		ADEEB70B1F9551F100E6B0BB /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEEB70A1F9551F100E6B0BB /* GameViewController.swift */; };
 		ADEEB70E1F9551F100E6B0BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADEEB70C1F9551F100E6B0BB /* Main.storyboard */; };
 		ADEEB7101F9551F100E6B0BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADEEB70F1F9551F100E6B0BB /* Assets.xcassets */; };
 		ADEEB7131F9551F100E6B0BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADEEB7111F9551F100E6B0BB /* LaunchScreen.storyboard */; };
-		ADEEB71B1F9552B100E6B0BB /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = ADEEB71A1F9552B100E6B0BB /* GameScene.sks */; };
+		ADEEB71B1F9552B100E6B0BB /* SentaGameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = ADEEB71A1F9552B100E6B0BB /* SentaGameScene.sks */; };
 		ADEEB71D1F95530C00E6B0BB /* TrainWithDog.sks in Resources */ = {isa = PBXBuildFile; fileRef = ADEEB71C1F95530C00E6B0BB /* TrainWithDog.sks */; };
 		ADEEB71F1F95531B00E6B0BB /* TrainWithDogGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEEB71E1F95531B00E6B0BB /* TrainWithDogGameScene.swift */; };
 		ADEEB7211F95537400E6B0BB /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEEB7201F95537400E6B0BB /* Helper.swift */; };
@@ -36,13 +36,13 @@
 		ADEEB6FF1F9551F100E6B0BB /* Teste_sentaII.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Teste_sentaII.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADEEB7021F9551F100E6B0BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ADEEB7061F9551F100E6B0BB /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
-		ADEEB7081F9551F100E6B0BB /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		ADEEB7081F9551F100E6B0BB /* SentaGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentaGameScene.swift; sourceTree = "<group>"; };
 		ADEEB70A1F9551F100E6B0BB /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		ADEEB70D1F9551F100E6B0BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ADEEB70F1F9551F100E6B0BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ADEEB7121F9551F100E6B0BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ADEEB7141F9551F100E6B0BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ADEEB71A1F9552B100E6B0BB /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		ADEEB71A1F9552B100E6B0BB /* SentaGameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SentaGameScene.sks; sourceTree = "<group>"; };
 		ADEEB71C1F95530C00E6B0BB /* TrainWithDog.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TrainWithDog.sks; sourceTree = "<group>"; };
 		ADEEB71E1F95531B00E6B0BB /* TrainWithDogGameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainWithDogGameScene.swift; sourceTree = "<group>"; };
 		ADEEB7201F95537400E6B0BB /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
@@ -108,10 +108,10 @@
 				ADC277891F96D293006B28F3 /* AudioSystem */,
 				AD2E430C1F967F1D003DD316 /* Extensions */,
 				ADEEB7021F9551F100E6B0BB /* AppDelegate.swift */,
-				ADEEB71A1F9552B100E6B0BB /* GameScene.sks */,
+				ADEEB71A1F9552B100E6B0BB /* SentaGameScene.sks */,
 				ADEEB7061F9551F100E6B0BB /* Actions.sks */,
 				ADEEB71C1F95530C00E6B0BB /* TrainWithDog.sks */,
-				ADEEB7081F9551F100E6B0BB /* GameScene.swift */,
+				ADEEB7081F9551F100E6B0BB /* SentaGameScene.swift */,
 				ADEEB71E1F95531B00E6B0BB /* TrainWithDogGameScene.swift */,
 				AD2E430F1F967F3C003DD316 /* SCLAlertView.swift */,
 				ADEEB70A1F9551F100E6B0BB /* GameViewController.swift */,
@@ -185,7 +185,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADEEB70E1F9551F100E6B0BB /* Main.storyboard in Resources */,
-				ADEEB71B1F9552B100E6B0BB /* GameScene.sks in Resources */,
+				ADEEB71B1F9552B100E6B0BB /* SentaGameScene.sks in Resources */,
 				ADEEB7101F9551F100E6B0BB /* Assets.xcassets in Resources */,
 				ADEEB71D1F95530C00E6B0BB /* TrainWithDog.sks in Resources */,
 				ADC2778E1F96D56A006B28F3 /* latidoPos.mp3 in Resources */,
@@ -202,7 +202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD2E430E1F967F2E003DD316 /* SCLExtensions.swift in Sources */,
-				ADEEB7091F9551F100E6B0BB /* GameScene.swift in Sources */,
+				ADEEB7091F9551F100E6B0BB /* SentaGameScene.swift in Sources */,
 				ADEEB70B1F9551F100E6B0BB /* GameViewController.swift in Sources */,
 				ADEEB7211F95537400E6B0BB /* Helper.swift in Sources */,
 				ADE016491F97F26A00B161C6 /* SKSpriteNode+Extensions.swift in Sources */,

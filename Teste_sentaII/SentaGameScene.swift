@@ -11,7 +11,7 @@ import GameplayKit
 
 
 
-class GameScene: SKScene {
+class SentaGameScene: SKScene {
     
     
     //Sprites do treinamento com o petisco e/sem voz

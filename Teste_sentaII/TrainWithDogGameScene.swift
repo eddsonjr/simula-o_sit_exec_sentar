@@ -143,7 +143,7 @@ class TrainWithDogGameScene: SKScene {
     func chamarCenaAnterior() {
         
         
-        guard let gameScene = SKScene(fileNamed: "GameScene") else { return }
+        guard let gameScene = SKScene(fileNamed: "SentaGameScene") else { return }
         let fadeTransition = SKTransition.crossFade(withDuration: 0.5)
         self.view?.presentScene(gameScene, transition: fadeTransition)
         
