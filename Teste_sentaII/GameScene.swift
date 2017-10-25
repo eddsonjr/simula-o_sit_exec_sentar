@@ -104,6 +104,7 @@ class GameScene: SKScene {
             }else if Helper.estagioTreinamento == trainStage.comVozEGesto.rawValue {
                 self.mao?.position = location
                 
+                print("TOUCHES MOVED Treinamento com voz e gesto")
                 treinamentoComVozEGesto()
             }
             
@@ -168,7 +169,7 @@ class GameScene: SKScene {
         if Helper.estagioTreinamento == trainStage.somenteComPetisco.rawValue || Helper.estagioTreinamento ==  trainStage.somenteComVoz.rawValue {
              self.animacaoPetiscoRetornar()
         }else{
-            self.mao?.position = CGPoint(x: -142, y: -61)
+            self.mao?.position = CGPoint(x: -142, y: -150)
         }
         
        
@@ -391,8 +392,16 @@ class GameScene: SKScene {
             
 
             
-        } //fecha o main region
-        
+        } else{ //fecha o if do main_region
+            let newTexture = SKTexture(image: #imageLiteral(resourceName: "dog"))
+            self.cachorro?.texture = newTexture
+            self.podeInterceptarPonto2 = true
+            self.podeInterceptarPonto1 = false
+
+//            self.podeInterceptarPonto1 = true
+//            self.podeInterceptarPonto2 = false
+        }
+
         
         
         
@@ -470,7 +479,7 @@ class GameScene: SKScene {
             
             
             //configurando a regiao 
-            self.main_region = SKSpriteNode(color: UIColor.brown, size: CGSize(width: 68, height: 202))
+            self.main_region = SKSpriteNode(color: UIColor.brown, size: CGSize(width: 68, height: 130))
             self.main_region?.alpha = 0.5
             self.main_region?.position = CGPoint(x: -142, y: -60)
             self.addChild(self.main_region!)
@@ -479,7 +488,7 @@ class GameScene: SKScene {
             //configurando a mao para o gesto
             self.mao = SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "hand")))
             self.mao?.size = CGSize(width: 48, height: 48)
-            self.mao?.position = CGPoint(x: -145, y: -135)
+            self.mao?.position = CGPoint(x: -145, y: -155)
             self.addChild(self.mao!)
 
             
