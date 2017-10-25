@@ -234,6 +234,10 @@ class GameScene: SKScene {
         self.petisco?.run(moveAnimation)
         
     }
+    
+    
+    
+    //Animacao de fazer a mao voltar
 
     
     
@@ -338,7 +342,13 @@ class GameScene: SKScene {
     func treinamentoComVozEGesto() {
         
         if (self.mao!.intersects(self.main_region!)) {
-            print("Entrou na main_region")
+            print("Entrou na main_region - Gesto e voz")
+            
+            
+            
+            print("Pontos de intercepcao: ponto1>> \(self.podeInterceptarPonto1) || ponto2>> \(self.podeInterceptarPonto2)")
+            
+
             
             //verificando os pontos de interecacao
             if (self.mao!.intersects(self.ponto_cabeca!)) && self.podeInterceptarPonto1 {
@@ -395,11 +405,9 @@ class GameScene: SKScene {
         } else{ //fecha o if do main_region
             let newTexture = SKTexture(image: #imageLiteral(resourceName: "dog"))
             self.cachorro?.texture = newTexture
-            self.podeInterceptarPonto2 = true
-            self.podeInterceptarPonto1 = false
+            self.podeInterceptarPonto2 = false
+            self.podeInterceptarPonto1 = true
 
-//            self.podeInterceptarPonto1 = true
-//            self.podeInterceptarPonto2 = false
         }
 
         
