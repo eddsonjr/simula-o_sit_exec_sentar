@@ -96,12 +96,12 @@ class SentaGameScene: SKScene {
           
         
             
-            if Helper.estagioTreinamento == trainStage.somenteComPetisco.rawValue || Helper.estagioTreinamento == trainStage.somenteComVoz.rawValue {
+            if SentaHelper.estagioTreinamento == SentatrainStage.somenteComPetisco.rawValue || SentaHelper.estagioTreinamento == SentatrainStage.somenteComVoz.rawValue {
                 self.petisco?.position = location
                 
                treinamentoComOuSemVoz()
             
-            }else if Helper.estagioTreinamento == trainStage.comVozEGesto.rawValue {
+            }else if SentaHelper.estagioTreinamento == SentatrainStage.comVozEGesto.rawValue {
                 self.mao?.position = location
                 
                 print("TOUCHES MOVED Treinamento com voz e gesto")
@@ -166,7 +166,7 @@ class SentaGameScene: SKScene {
         self.podeInterceptarPonto1 = false
         
         
-        if Helper.estagioTreinamento == trainStage.somenteComPetisco.rawValue || Helper.estagioTreinamento ==  trainStage.somenteComVoz.rawValue {
+        if SentaHelper.estagioTreinamento == SentatrainStage.somenteComPetisco.rawValue || SentaHelper.estagioTreinamento ==  SentatrainStage.somenteComVoz.rawValue {
              self.animacaoPetiscoRetornar()
         }else{
             self.animacaoMaoRetornar()
@@ -182,12 +182,12 @@ class SentaGameScene: SKScene {
      a serem exibidas*/
     func verificarEtapaTreinamento() {
         
-        switch Helper.estagioTreinamento {
-            case trainStage.somenteComPetisco.rawValue: //treinamento somente com o petisco
+        switch SentaHelper.estagioTreinamento {
+            case SentatrainStage.somenteComPetisco.rawValue: //treinamento somente com o petisco
                 
                 configurarSpritesNaCena()
             
-            case trainStage.somenteComVoz.rawValue: //treinamento com petisco e voz
+            case SentatrainStage.somenteComVoz.rawValue: //treinamento com petisco e voz
             
                 configurarSpritesNaCena()
                 
@@ -195,7 +195,7 @@ class SentaGameScene: SKScene {
                 print("[GameScene]: TEM QUE TREINAR COM VOZ")
                 alerta.alertarWarning(titulo: "Treinar com comando voz", textoBase: "Agora treine o seu animal dando o comando de voz", textoBotao: "OK")
 
-            case trainStage.comVozEGesto.rawValue: //treinamento com voz e gesto
+            case SentatrainStage.comVozEGesto.rawValue: //treinamento com voz e gesto
             
                 configurarSpritesNaCena()
              
@@ -294,7 +294,7 @@ class SentaGameScene: SKScene {
                 
                 
                 //verifica se tem que colocar o comando de voz
-                if Helper.estagioTreinamento == trainStage.somenteComVoz.rawValue {
+                if SentaHelper.estagioTreinamento == SentatrainStage.somenteComVoz.rawValue {
                     print("[GameScene]: ADICIONAR COMANDO DE VOZ")
                     tocarComando()
 
@@ -421,7 +421,7 @@ class SentaGameScene: SKScene {
     /*Esta funcao tem por obejtivo configurar os sprites na hora em que a cena é criada*/
     func configurarSpritesNaCena() {
         
-       print("ESTAGIO TREINAMENTO: \(Helper.estagioTreinamento)")
+       print("ESTAGIO TREINAMENTO: \(SentaHelper.estagioTreinamento)")
         
         self.cachorro = childNode(withName: "cachorro") as? SKSpriteNode
         self.label_qtTentativas = childNode(withName: "qt_Tentativas") as? SKLabelNode
@@ -431,7 +431,7 @@ class SentaGameScene: SKScene {
 
         /*Verificando se o treinamento esta no estagio 1 ou 2 (treinando so com petisco ou so com a
          voz)*/
-        if Helper.estagioTreinamento == trainStage.somenteComPetisco.rawValue || Helper.estagioTreinamento == trainStage.somenteComVoz.rawValue {
+        if SentaHelper.estagioTreinamento == SentatrainStage.somenteComPetisco.rawValue || SentaHelper.estagioTreinamento == SentatrainStage.somenteComVoz.rawValue {
             
              print("[GAMESCENE >STAGE<]: Treinamento com petisco e/sem voz")
             
@@ -465,7 +465,7 @@ class SentaGameScene: SKScene {
             self.addChild(self.petisco!)
             
         
-        }else if Helper.estagioTreinamento == trainStage.comVozEGesto.rawValue {
+        }else if SentaHelper.estagioTreinamento == SentatrainStage.comVozEGesto.rawValue {
             
             //configurando os pontos a serem passados no exercicio com o gesto
              print("[GAMESCENE >STAGE<]: Treinamento com voz e gesto")

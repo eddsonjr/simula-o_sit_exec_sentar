@@ -90,9 +90,9 @@ class TrainWithDogGameScene: SKScene {
         
         //Se o progresso ja chegou em determinada porcentagem o treinamento estava ocorrendo sem voz
         // carregar a cena anterior e setar o treinamento para comecar com voz
-        if Helper.porcentagemGeralDoPrgoresso == 45 && Helper.estagioTreinamento == trainStage.somenteComPetisco.rawValue{
+        if SentaHelper.porcentagemGeralDoPrgoresso == 45 && SentaHelper.estagioTreinamento == SentatrainStage.somenteComPetisco.rawValue{
             print("[TELA DE PROGRESSO]: Adicionar comando de voz")
-            Helper.estagioTreinamento = trainStage.somenteComVoz.rawValue
+            SentaHelper.estagioTreinamento = SentatrainStage.somenteComVoz.rawValue
             chamarCenaAnterior()
             return
 
@@ -100,10 +100,10 @@ class TrainWithDogGameScene: SKScene {
         
         //Se o progresso ja chegou em <%> e ja houve o treinamento com voz, entao chamar a tela
         //anterior e treinar com voz e gesto
-        if Helper.porcentagemGeralDoPrgoresso == 90 && Helper.estagioTreinamento == trainStage.somenteComVoz.rawValue {
+        if SentaHelper.porcentagemGeralDoPrgoresso == 90 && SentaHelper.estagioTreinamento == SentatrainStage.somenteComVoz.rawValue {
             print("[TELA DE PROGRESSO]: Adicionar gesto")
-            Helper.estagioTreinamento = trainStage.comVozEGesto.rawValue
-            print("TELAPROGRESSO: \(Helper.estagioTreinamento)")
+            SentaHelper.estagioTreinamento = SentatrainStage.comVozEGesto.rawValue
+            print("TELAPROGRESSO: \(SentaHelper.estagioTreinamento)")
             chamarCenaAnterior()
             return
         }
@@ -114,8 +114,8 @@ class TrainWithDogGameScene: SKScene {
         //Se o progresso ja chegou em 100% e houve os treinamentos com voz e com gesto, chamar a tela
         // de feedback pois o exercicio terminou
 
-        if Helper.porcentagemGeralDoPrgoresso >= 150 && Helper.estagioTreinamento == trainStage.comVozEGesto.rawValue {
-            Helper.estagioTreinamento = trainStage.treinamentoCompletado.rawValue
+        if SentaHelper.porcentagemGeralDoPrgoresso >= 150 && SentaHelper.estagioTreinamento == SentatrainStage.comVozEGesto.rawValue {
+            SentaHelper.estagioTreinamento = SentatrainStage.treinamentoCompletado.rawValue
             
         }
         
@@ -129,11 +129,11 @@ class TrainWithDogGameScene: SKScene {
     func atualizarBarraProgresso(crescimento: CGFloat){
         
         self.barraProgresso?.alpha = 1.0
-        Helper.tamanhoBarraDeProgresso = (Float((self.barraProgresso?.size.width)! + crescimento))
-        Helper.porcentagemGeralDoPrgoresso = Helper.porcentagemGeralDoPrgoresso + 15
-        self.barraProgresso?.size = CGSize(width: Int(Helper.tamanhoBarraDeProgresso), height: 35)
+        SentaHelper.tamanhoBarraDeProgresso = (Float((self.barraProgresso?.size.width)! + crescimento))
+        SentaHelper.porcentagemGeralDoPrgoresso = SentaHelper.porcentagemGeralDoPrgoresso + 15
+        self.barraProgresso?.size = CGSize(width: Int(SentaHelper.tamanhoBarraDeProgresso), height: 35)
         
-        print("Porcentagem ja adquirida: \(Helper.porcentagemGeralDoPrgoresso)")
+        print("Porcentagem ja adquirida: \(SentaHelper.porcentagemGeralDoPrgoresso)")
     }
     
     
@@ -158,11 +158,11 @@ class TrainWithDogGameScene: SKScene {
     func verificarAndamentoDoProcessoDeTreinamento() {
         
         //Se a porcentagem de treinamento é zero, entao a barra de progresso nao existe ou esta vazia
-        if Helper.porcentagemGeralDoPrgoresso == 0{
+        if SentaHelper.porcentagemGeralDoPrgoresso == 0{
             self.barraProgresso?.alpha = 0.0
-        }else if Helper.porcentagemGeralDoPrgoresso > 0 {
+        }else if SentaHelper.porcentagemGeralDoPrgoresso > 0 {
             self.barraProgresso?.alpha = 1.0
-            self.barraProgresso?.size = CGSize(width: Int(Helper.tamanhoBarraDeProgresso), height: 35)
+            self.barraProgresso?.size = CGSize(width: Int(SentaHelper.tamanhoBarraDeProgresso), height: 35)
         }
         
         

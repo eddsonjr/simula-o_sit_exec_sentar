@@ -13,7 +13,7 @@ import SpriteKit
 
 
 /*Enum contendo as fases de treinamento do exercicio*/
-enum trainStage: Int {
+enum SentatrainStage: Int {
     case somenteComPetisco = 0
     case somenteComVoz = 1
     case comVozEGesto = 2
@@ -22,14 +22,14 @@ enum trainStage: Int {
 
 
 
-class Helper {
+class SentaHelper {
 
     static var tamanhoBarraDeProgresso: Float = 0
     static var porcentagemGeralDoPrgoresso: Float = 0
     
     
     //Armazena o estagio de treinamento do cachorro
-    static var estagioTreinamento: Int = trainStage.somenteComPetisco.rawValue
+    static var estagioTreinamento: Int = SentatrainStage.somenteComPetisco.rawValue
     
     
 
