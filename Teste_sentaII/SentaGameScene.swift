@@ -427,6 +427,16 @@ class SentaGameScene: SKScene {
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /*Esta funcao tem por obejtivo configurar os sprites na hora em que a cena é criada*/
     func configurarSpritesNaCena() {
         
