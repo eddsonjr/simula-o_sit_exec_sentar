@@ -13,6 +13,7 @@
 		ADC2778B1F96D3C6006B28F3 /* SimpleAudioPlayback.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC2778A1F96D3C6006B28F3 /* SimpleAudioPlayback.swift */; };
 		ADC2778E1F96D56A006B28F3 /* latidoPos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADC2778D1F96D56A006B28F3 /* latidoPos.mp3 */; };
 		ADE016491F97F26A00B161C6 /* SKSpriteNode+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE016481F97F26900B161C6 /* SKSpriteNode+Extensions.swift */; };
+		ADEBEA251FA7AC7000B0FE18 /* ProgressBarSpriteKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEBEA241FA7AC7000B0FE18 /* ProgressBarSpriteKit.swift */; };
 		ADEEB7031F9551F100E6B0BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEEB7021F9551F100E6B0BB /* AppDelegate.swift */; };
 		ADEEB7071F9551F100E6B0BB /* SentaActions.sks in Resources */ = {isa = PBXBuildFile; fileRef = ADEEB7061F9551F100E6B0BB /* SentaActions.sks */; };
 		ADEEB7091F9551F100E6B0BB /* SentaGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEEB7081F9551F100E6B0BB /* SentaGameScene.swift */; };
@@ -33,6 +34,7 @@
 		ADC2778A1F96D3C6006B28F3 /* SimpleAudioPlayback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleAudioPlayback.swift; sourceTree = "<group>"; };
 		ADC2778D1F96D56A006B28F3 /* latidoPos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = latidoPos.mp3; sourceTree = "<group>"; };
 		ADE016481F97F26900B161C6 /* SKSpriteNode+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKSpriteNode+Extensions.swift"; sourceTree = "<group>"; };
+		ADEBEA241FA7AC7000B0FE18 /* ProgressBarSpriteKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBarSpriteKit.swift; sourceTree = "<group>"; };
 		ADEEB6FF1F9551F100E6B0BB /* Teste_sentaII.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Teste_sentaII.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADEEB7021F9551F100E6B0BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ADEEB7061F9551F100E6B0BB /* SentaActions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SentaActions.sks; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				ADEEB70F1F9551F100E6B0BB /* Assets.xcassets */,
 				ADEEB7111F9551F100E6B0BB /* LaunchScreen.storyboard */,
 				ADEEB7141F9551F100E6B0BB /* Info.plist */,
+				ADEBEA241FA7AC7000B0FE18 /* ProgressBarSpriteKit.swift */,
 				ADEEB7201F95537400E6B0BB /* SentaHelper.swift */,
 			);
 			path = Teste_sentaII;
@@ -209,6 +212,7 @@
 				AD2E43121F96AEA8003DD316 /* SCLAlertView+Extension.swift in Sources */,
 				ADEEB71F1F95531B00E6B0BB /* TrainWithDogGameScene.swift in Sources */,
 				AD2E43101F967F3C003DD316 /* SCLAlertView.swift in Sources */,
+				ADEBEA251FA7AC7000B0FE18 /* ProgressBarSpriteKit.swift in Sources */,
 				ADEEB7031F9551F100E6B0BB /* AppDelegate.swift in Sources */,
 				ADC2778B1F96D3C6006B28F3 /* SimpleAudioPlayback.swift in Sources */,
 			);

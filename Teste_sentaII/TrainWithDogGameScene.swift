@@ -25,6 +25,11 @@ class TrainWithDogGameScene: SKScene {
     var insideShapeProgressBar = SKShapeNode()
     
     
+    
+    var progressBar: ProgressBarSpriteKit? //Barra de progresso
+    
+    
+    
     override func didMove(to view: SKView){
         
         print("NA DIDMOVETOVIEW DO BARRA DE PROGRESSO")
@@ -33,7 +38,10 @@ class TrainWithDogGameScene: SKScene {
         self.ossoVazado1 = self.childNode(withName: "ossoVazado1") as? SKSpriteNode
         self.barraProgresso = self.childNode(withName: "barraProgresso") as? SKSpriteNode
         
-       
+        
+        
+        
+        
         
         
         
