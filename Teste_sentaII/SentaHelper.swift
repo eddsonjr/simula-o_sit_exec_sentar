@@ -25,7 +25,7 @@ enum SentatrainStage: Int {
 class SentaHelper {
 
     static var tamanhoBarraDeProgresso: Float = 0
-    static var porcentagemGeralDoPrgoresso: Float = 0
+    static var porcentagemGeralDoPrgoresso: CGFloat = 0
     
     
     //Armazena o estagio de treinamento do cachorro

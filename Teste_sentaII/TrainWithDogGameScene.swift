@@ -11,19 +11,11 @@ import SpriteKit
 import GameplayKit
 
 class TrainWithDogGameScene: SKScene {
-    
-    
-    
+
     var ossoVazado1: SKSpriteNode?
-    var barraProgresso: SKSpriteNode?
-    var ossosRestantes: Int = 3
-    
-    private static var jaIniciado = false
-    
-    
     let progressBarOutline = SKShapeNode()
     var insideShapeProgressBar = SKShapeNode()
-    
+    let incrementoPorcentagem = CGFloat(10)
     
     
     var progressBar: ProgressBarSpriteKit? //Barra de progresso
@@ -36,8 +28,7 @@ class TrainWithDogGameScene: SKScene {
         view.isUserInteractionEnabled = true
         
         self.ossoVazado1 = self.childNode(withName: "ossoVazado1") as? SKSpriteNode
-        self.barraProgresso = self.childNode(withName: "barraProgresso") as? SKSpriteNode
-        
+       
         
         //criando a barra de progresso do jogo
         progressBar = ProgressBarSpriteKit(rect: CGRect(x: 0, y: 0, width: 250, height: 64), lineColor: UIColor.gray, progressBarColor: UIColor.purple)
@@ -49,11 +40,6 @@ class TrainWithDogGameScene: SKScene {
         //atualizando a porcentagem da barra de progresso
         self.progressBar?.atualizarProgressoBarra(porcengatem: CGFloat(SentaHelper.porcentagemGeralDoPrgoresso))
         
-        
-        
-        
-
-    
     }
     
     
@@ -91,7 +77,9 @@ class TrainWithDogGameScene: SKScene {
             
             if (self.ossoVazado1?.contains(location))!{
                 print("Osso vazado 1 tocado")
-                self.progressBar?.atualizarProgressoBarra(porcengatem: CGFloat(25))
+                SentaHelper.porcentagemGeralDoPrgoresso = SentaHelper.porcentagemGeralDoPrgoresso + self.incrementoPorcentagem
+                print("Porcentagem adquirida: \(SentaHelper.porcentagemGeralDoPrgoresso)")
+                self.progressBar?.atualizarProgressoBarra(porcengatem: SentaHelper.porcentagemGeralDoPrgoresso)
             }
         }
     }
@@ -112,7 +100,7 @@ class TrainWithDogGameScene: SKScene {
         
         //Se o progresso ja chegou em determinada porcentagem o treinamento estava ocorrendo sem voz
          //carregar a cena anterior e setar o treinamento para comecar com voz
-        if SentaHelper.porcentagemGeralDoPrgoresso == 45 && SentaHelper.estagioTreinamento == SentatrainStage.somenteComPetisco.rawValue{
+        if SentaHelper.porcentagemGeralDoPrgoresso == 30 && SentaHelper.estagioTreinamento == SentatrainStage.somenteComPetisco.rawValue{
             print("[TELA DE PROGRESSO]: Adicionar comando de voz")
             SentaHelper.estagioTreinamento = SentatrainStage.somenteComVoz.rawValue
             chamarCenaAnterior()
@@ -120,9 +108,10 @@ class TrainWithDogGameScene: SKScene {
 
         }
  
+        
         //Se o progresso ja chegou em <%> e ja houve o treinamento com voz, entao chamar a tela
         //anterior e treinar com voz e gesto
-        if SentaHelper.porcentagemGeralDoPrgoresso == 90 && SentaHelper.estagioTreinamento == SentatrainStage.somenteComVoz.rawValue {
+        if SentaHelper.porcentagemGeralDoPrgoresso == 70 && SentaHelper.estagioTreinamento == SentatrainStage.somenteComVoz.rawValue {
             print("[TELA DE PROGRESSO]: Adicionar gesto")
             SentaHelper.estagioTreinamento = SentatrainStage.comVozEGesto.rawValue
             print("TELAPROGRESSO: \(SentaHelper.estagioTreinamento)")
@@ -135,9 +124,10 @@ class TrainWithDogGameScene: SKScene {
         
         //Se o progresso ja chegou em 100% e houve os treinamentos com voz e com gesto, chamar a tela
         // de feedback pois o exercicio terminou
-
-        if SentaHelper.porcentagemGeralDoPrgoresso >= 150 && SentaHelper.estagioTreinamento == SentatrainStage.comVozEGesto.rawValue {
+        if SentaHelper.porcentagemGeralDoPrgoresso >= 100 && SentaHelper.estagioTreinamento == SentatrainStage.comVozEGesto.rawValue {
             SentaHelper.estagioTreinamento = SentatrainStage.treinamentoCompletado.rawValue
+            print("CHAMAR A TELA DE FEEDBACK AQUI")
+            /*CHAME A TELA DE FEEDBACK AQUI*/
             
         }
         

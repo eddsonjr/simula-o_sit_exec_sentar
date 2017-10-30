@@ -385,7 +385,13 @@ class SentaGameScene: SKScene {
                     //Condicao para treinar com o cachorro
                     if self.quantidadeDeTentativasAntesTreino == 3 {
                         
-                        print("CHAMAR A TELA DE FEEDBACK AQUI")
+                        print("[GameScene]: Atingiu a quantidade maxima de treino")
+                        
+                        //chama o alerta de treinamento com o animal e depois de 3 tentativas no app
+                        self.alerta.alertarWarning(titulo: "Treinar com o cachorro", textoBase: "Treine com o seu animal agora", textoBotao: "OK", completionHandler: {
+                            
+                            self.loadNewScene()
+                        })
                         
                         
                     }else {
