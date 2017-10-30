@@ -45,6 +45,9 @@ class SentaGameScene: SKScene {
     override func didMove(to view: SKView){
         
         print("In didMove")
+        
+        //Habilitando a interacao do usuario com a tela  [ela e desativada na tela de progresso]
+         self.view?.isUserInteractionEnabled = true
     
         //verificando as etapas do treinamento
         verificarEtapaTreinamento()

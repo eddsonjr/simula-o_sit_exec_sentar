@@ -43,6 +43,8 @@ class TrainWithDogGameScene: SKScene {
         //atualizando a porcentagem da barra de progresso
         self.progressBar?.atualizarProgressoBarra(porcengatem: CGFloat(SentaHelper.porcentagemGeralDoPrgoresso))
         
+        
+        
     }
     
     
@@ -108,7 +110,7 @@ class TrainWithDogGameScene: SKScene {
             SentaHelper.estagioTreinamento = SentatrainStage.somenteComVoz.rawValue
             
             //Desativando o botao de interacao para impedir o usuario de clicar e fazer mais porcentagens
-            self.ossoVazado1?.isUserInteractionEnabled = false
+           self.view?.isUserInteractionEnabled = false
             
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
                 self.chamarCenaAnterior()
@@ -124,8 +126,18 @@ class TrainWithDogGameScene: SKScene {
             print("[TELA DE PROGRESSO]: Adicionar gesto")
             SentaHelper.estagioTreinamento = SentatrainStage.comVozEGesto.rawValue
             print("TELAPROGRESSO: \(SentaHelper.estagioTreinamento)")
-            chamarCenaAnterior()
-            return
+            
+            
+            //Desativando o botao de interacao para impedir o usuario de clicar e fazer mais porcentagens
+              self.view?.isUserInteractionEnabled = false
+
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+                self.chamarCenaAnterior()
+                return
+                
+            })
+            
         }
 
 
@@ -135,7 +147,17 @@ class TrainWithDogGameScene: SKScene {
         // de feedback pois o exercicio terminou
         if SentaHelper.porcentagemGeralDoPrgoresso >= 100 && SentaHelper.estagioTreinamento == SentatrainStage.comVozEGesto.rawValue {
             SentaHelper.estagioTreinamento = SentatrainStage.treinamentoCompletado.rawValue
-            print("CHAMAR A TELA DE FEEDBACK AQUI")
+            
+            //Desativando o botao de interacao para impedir o usuario de clicar e fazer mais porcentagens
+            self.view?.isUserInteractionEnabled = false
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+                print("CHAMAR A TELA DE FEEDBACK AQUI")
+                return
+                
+            })
+
+            
             /*CHAME A TELA DE FEEDBACK AQUI*/
             
         }
