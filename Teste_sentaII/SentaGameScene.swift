@@ -30,7 +30,8 @@ class SentaGameScene: SKScene {
     var label_qtTentativas: SKLabelNode?
     
     
-    
+    //Spritenode para indicar o petisco ou a mao
+    var petisco_mao: SKSpriteNode?  //representa tanto o petisco quanto a mao para permitir interacao do usuario
     
     
     //Booleanos de controler da logica da passagem pelos pontos
@@ -100,20 +101,23 @@ class SentaGameScene: SKScene {
         for touch in touches {
             let location = touch.location(in: self)
           
-        
+            self.petisco_mao?.position = location
+            treinar()
             
-            if SentaHelper.estagioTreinamento == SentatrainStage.somenteComPetisco.rawValue || SentaHelper.estagioTreinamento == SentatrainStage.somenteComVoz.rawValue {
-                self.petisco?.position = location
-                
-               treinamentoComOuSemVoz()
             
-            }else if SentaHelper.estagioTreinamento == SentatrainStage.comVozEGesto.rawValue {
-                self.mao?.position = location
-                
-                print("TOUCHES MOVED Treinamento com voz e gesto")
-                treinamentoComVozEGesto()
-            }
             
+//            if SentaHelper.estagioTreinamento == SentatrainStage.somenteComPetisco.rawValue || SentaHelper.estagioTreinamento == SentatrainStage.somenteComVoz.rawValue {
+//                self.petisco?.position = location
+//                
+//               treinamentoComOuSemVoz()
+//            
+//            }else if SentaHelper.estagioTreinamento == SentatrainStage.comVozEGesto.rawValue {
+//                self.mao?.position = location
+//                
+//                print("TOUCHES MOVED Treinamento com voz e gesto")
+//                treinamentoComVozEGesto()
+//            }
+//            
             
         }
     }
@@ -184,6 +188,31 @@ class SentaGameScene: SKScene {
     
     
     
+    
+    func reposicionarSprites() {
+        
+        //mudando a textura do cachorro para ele em pe novamente
+        self.cachorro?.texture = SKTexture(image: #imageLiteral(resourceName: "dog"))
+        
+        
+        //colocando a interacao da tela com o usuario novamente
+        //view?.isUserInteractionEnabled = true
+        self.podeInterceptarPonto2 = false
+        self.podeInterceptarPonto1 = false
+        
+
+        if SentaHelper.estagioTreinamento == SentatrainStage.somenteComPetisco.rawValue || SentaHelper.estagioTreinamento ==  SentatrainStage.somenteComVoz.rawValue {
+            self.animacaoPetiscoRetornar()
+        }else{
+            self.animacaoMaoRetornar()
+        }
+
+        
+        
+    }
+    
+    
+    
     /*Esta funcao verifica a etapa atual do treinamento e realiza configuracoes de sprites e mensagens
      a serem exibidas*/
     func verificarEtapaTreinamento() {
@@ -231,7 +260,7 @@ class SentaGameScene: SKScene {
     func animacaoPetiscoRetornar() {
         
         let moveAnimation = SKAction.move(to: CGPoint(x: 304, y: 143), duration: 2)
-        self.petisco?.run(moveAnimation)
+        self.petisco_mao?.run(moveAnimation)
         
     }
     
@@ -240,7 +269,7 @@ class SentaGameScene: SKScene {
     //Animacao de fazer a mao voltar
     func animacaoMaoRetornar() {
         let moveAnimation = SKAction.move(to: CGPoint(x: -145, y: -155), duration: 2)
-        self.mao?.run(moveAnimation)
+        self.petisco_mao?.run(moveAnimation)
 
     }
 
@@ -431,7 +460,7 @@ class SentaGameScene: SKScene {
         
         /*Verifica se o usuario esta com o petisco dentro da area de atuacao dos dois pontos que ele
          tem que passar */
-        if (self.petisco!.intersects(self.main_region!)) {
+        if (self.petisco_mao!.intersects(self.main_region!)) {
             print("Entrou na main_region")
             
             print("Pontos de intercepcao: ponto1>> \(self.podeInterceptarPonto1) || ponto2>> \(self.podeInterceptarPonto2)")
@@ -442,7 +471,7 @@ class SentaGameScene: SKScene {
             /*Caso o usuario tenha interceptado o ponto 1, ele troca o sprite e permite o toque
              no segundo ponto, caso contrario, ele volta para o sprite do cachorro normal, trava
              o ponto dele sentar e volta o sprite para o cachorro em pe*/
-            if ((self.petisco!.intersects(self.ponto_cabeca!)) && self.podeInterceptarPonto1) {
+            if ((self.petisco_mao!.intersects(self.ponto_cabeca!)) && self.podeInterceptarPonto1) {
                 print("[Gamescene]: O cachoror esta olhando para cima")
                 let newTexture = SKTexture(image: #imageLiteral(resourceName: "dog_look_up"))
                 self.cachorro?.texture = newTexture
@@ -456,7 +485,7 @@ class SentaGameScene: SKScene {
             
             //se o usuario aproximar o petisco ainda mais proximo da cabeca do cachorro, ai sim
             //ele ira sentar
-            if ((self.petisco!.intersects(self.ponto_sentar!)) && self.podeInterceptarPonto2) {
+            if ((self.petisco_mao!.intersects(self.ponto_sentar!)) && self.podeInterceptarPonto2) {
                 print("Atingiu o ponto para sentar")
                 
                 
@@ -496,7 +525,7 @@ class SentaGameScene: SKScene {
                         
                         
                     }else {
-                        self.recolocarSprites()
+                        self.reposicionarSprites()
                     }
                     
                 }) //Fecha o mainqueue
@@ -542,6 +571,16 @@ class SentaGameScene: SKScene {
             
              print("[GAMESCENE >STAGE<]: Treinamento com petisco e/sem voz")
             
+            
+            //Configurando o sprite do petisco
+            self.petisco_mao = SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "snack")))
+            self.petisco_mao?.size = CGSize(width: 64, height: 64)
+            self.petisco_mao?.alpha = 1.0
+            self.petisco_mao?.position = CGPoint(x: 305, y: 145)
+            self.addChild(self.petisco_mao!)
+
+            
+            
             // configurando sprite do main_region
             self.main_region = SKSpriteNode(color: UIColor.brown, size: CGSize(width: 165, height: 145))
             self.main_region?.alpha = 0.4
@@ -564,18 +603,26 @@ class SentaGameScene: SKScene {
             self.addChild(self.ponto_sentar!)
             
             
-            //Configurando o sprite do petisco
-            self.petisco = SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "snack")))
-            self.petisco?.size = CGSize(width: 64, height: 64)
-            self.petisco?.alpha = 1.0
-            self.petisco?.position = CGPoint(x: 305, y: 145)
-            self.addChild(self.petisco!)
+//            //Configurando o sprite do petisco
+//            self.petisco = SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "snack")))
+//            self.petisco?.size = CGSize(width: 64, height: 64)
+//            self.petisco?.alpha = 1.0
+//            self.petisco?.position = CGPoint(x: 305, y: 145)
+//            self.addChild(self.petisco!)
             
         
         }else if SentaHelper.estagioTreinamento == SentatrainStage.comVozEGesto.rawValue {
             
             //configurando os pontos a serem passados no exercicio com o gesto
              print("[GAMESCENE >STAGE<]: Treinamento com voz e gesto")
+            
+            
+            //configurando a mao para o gesto
+            self.petisco_mao = SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "hand")))
+            self.petisco_mao?.size = CGSize(width: 48, height: 48)
+            self.petisco_mao?.position = CGPoint(x: -145, y: -155)
+            self.addChild(self.petisco_mao!)
+
             
             //ponto 1
             self.ponto_cabeca = SKSpriteNode(color: UIColor.red, size: CGSize(width: 24, height: 24))
@@ -599,10 +646,10 @@ class SentaGameScene: SKScene {
             
             
             //configurando a mao para o gesto
-            self.mao = SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "hand")))
-            self.mao?.size = CGSize(width: 48, height: 48)
-            self.mao?.position = CGPoint(x: -145, y: -155)
-            self.addChild(self.mao!)
+//            self.mao = SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "hand")))
+//            self.mao?.size = CGSize(width: 48, height: 48)
+//            self.mao?.position = CGPoint(x: -145, y: -155)
+//            self.addChild(self.mao!)
 
             
         }
