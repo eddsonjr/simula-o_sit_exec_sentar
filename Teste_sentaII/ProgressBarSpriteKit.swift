@@ -50,6 +50,11 @@ class ProgressBarSpriteKit {
     
     //Funcao para rendereizar o interior da barra de progresso
     func renderizarProgresso(montante: CGFloat) {
+        if montante == 0.0 {
+            return
+        }
+
+        
          let montanteRenderizacao = montante - 3.0
          self.insideShapeProgressBar.path = UIBezierPath(roundedRect: CGRect(x: progressBarOutline.frame.minX+2.75, y: progressBarOutline.frame.minY+2.75, width: montanteRenderizacao, height: progressBarOutline.frame.height-5), cornerRadius: 1).cgPath
     }
@@ -59,10 +64,16 @@ class ProgressBarSpriteKit {
     
     //Atualiza  o progresso da barra
     func atualizarProgressoBarra(porcengatem: CGFloat) {
-        let montanteRenderizacao = ((self.progressBarOutline.frame.width*porcengatem)/100)
+        let montanteRenderizacao: CGFloat!
+        
+        if porcengatem > 100{
+            montanteRenderizacao = ((self.progressBarOutline.frame.width*100)/100)
+        }else{
+            montanteRenderizacao = ((self.progressBarOutline.frame.width*porcengatem)/100)
+        }
+        
         print(montanteRenderizacao)
         renderizarProgresso(montante: montanteRenderizacao)
-        
     }
     
     

@@ -39,20 +39,15 @@ class TrainWithDogGameScene: SKScene {
         self.barraProgresso = self.childNode(withName: "barraProgresso") as? SKSpriteNode
         
         
+        //criando a barra de progresso do jogo
+        progressBar = ProgressBarSpriteKit(rect: CGRect(x: 0, y: 0, width: 250, height: 64), lineColor: UIColor.gray, progressBarColor: UIColor.purple)
         
+        //Colocando os shapes da barra de progresso na tela
+        self.addChild((progressBar?.getProgressBarSpriteKitShapes().1)!) //adquiri o preenchimento
+        self.addChild((progressBar?.getProgressBarSpriteKitShapes().0)!) //adquiri o outline da barra
         
-        
-        
-        
-        
-        if !TrainWithDogGameScene.jaIniciado {
-            //Teste - Criando a barra de progresso
-            configurarProgressBar()
-        }else {
-            //Verifica as condicoes do progresso de treinamento para configurar a barra de progresso
-            verificarAndamentoDoProcessoDeTreinamento()
-        }
-        
+        //atualizando a porcentagem da barra de progresso
+        self.progressBar?.atualizarProgressoBarra(porcengatem: CGFloat(SentaHelper.porcentagemGeralDoPrgoresso))
         
         
         
@@ -96,8 +91,7 @@ class TrainWithDogGameScene: SKScene {
             
             if (self.ossoVazado1?.contains(location))!{
                 print("Osso vazado 1 tocado")
-                //atualizarBarraProgresso(crescimento: 25)
-                updateProgressBar(progress: CGFloat(15))
+                self.progressBar?.atualizarProgressoBarra(porcengatem: CGFloat(25))
             }
         }
     }
@@ -152,22 +146,6 @@ class TrainWithDogGameScene: SKScene {
     
     
     
-    
-    
-    func atualizarBarraProgresso(crescimento: CGFloat){
-        
-        self.barraProgresso?.alpha = 1.0
-        SentaHelper.tamanhoBarraDeProgresso = (Float((self.barraProgresso?.size.width)! + crescimento))
-        SentaHelper.porcentagemGeralDoPrgoresso = SentaHelper.porcentagemGeralDoPrgoresso + 15
-        self.barraProgresso?.size = CGSize(width: Int(SentaHelper.tamanhoBarraDeProgresso), height: 35)
-        
-        print("Porcentagem ja adquirida: \(SentaHelper.porcentagemGeralDoPrgoresso)")
-    }
-    
-    
-
-    
-    
     func chamarCenaAnterior() {
         
         
@@ -176,80 +154,4 @@ class TrainWithDogGameScene: SKScene {
         self.view?.presentScene(gameScene, transition: fadeTransition)
         
     }
-
-    
-    
-    
-    
-    //Esta funcao e responsavel por verificar o andamento do adestramento do animal e setar as condicoes
-    //e configuracoes dos elementos na tela.
-    func verificarAndamentoDoProcessoDeTreinamento() {
-        
-        
-        if SentaHelper.porcentagemGeralDoPrgoresso > 0 {
-            
-        }
-        
-        
-        
-        //Se a porcentagem de treinamento é zero, entao a barra de progresso nao existe ou esta vazia
-        if SentaHelper.porcentagemGeralDoPrgoresso == 0{
-            self.barraProgresso?.alpha = 0.0
-        }else if SentaHelper.porcentagemGeralDoPrgoresso > 0 {
-            self.barraProgresso?.alpha = 1.0
-            self.barraProgresso?.size = CGSize(width: Int(SentaHelper.tamanhoBarraDeProgresso), height: 35)
-        }
-    }
-    
-    
-    func configurarProgressBar() {
-        
-        
-        //Outline da barra de progresso
-        progressBarOutline.path = UIBezierPath(roundedRect: CGRect(x: frame.minX + 10, y: -128, width: 500, height: 24), cornerRadius: 4).cgPath
-        progressBarOutline.fillColor = UIColor.clear
-        progressBarOutline.strokeColor = UIColor.black
-        progressBarOutline.lineWidth = 2
-        
-        
-        //Preenchimento da barra de progresso
-        insideShapeProgressBar.path = UIBezierPath(roundedRect: CGRect(x: progressBarOutline.frame.minX+3, y: progressBarOutline.frame.minY-1, width: 0, height: progressBarOutline.frame.height-2), cornerRadius: 1).cgPath
-        insideShapeProgressBar.fillColor = UIColor.purple
-        insideShapeProgressBar.strokeColor = UIColor.clear
-        insideShapeProgressBar.lineWidth = 2
-        
-        
-        addChild(progressBarOutline)
-        progressBarOutline.addChild(insideShapeProgressBar)
-    }
-    
-    
-    
-    
-    
-    
-    func updateProgressBar(progress: CGFloat) {
-        var montante = (self.insideShapeProgressBar.frame.width + progress)
-        
-        if (montante >= self.progressBarOutline.frame.width) {
-            print("Montante: \(montante) | Completado: \(self.insideShapeProgressBar.frame.width) | Progresso: \(progress)")
-            let novoMontante = self.progressBarOutline.frame.width - self.insideShapeProgressBar.frame.width + self.insideShapeProgressBar.frame.width - 6
-            
-            self.insideShapeProgressBar.path = UIBezierPath(roundedRect: CGRect(x: progressBarOutline.frame.minX+3, y: progressBarOutline.frame.minY+3, width: novoMontante, height: progressBarOutline.frame.height-6), cornerRadius: 1).cgPath
-            
-            
-        }else {
-             self.insideShapeProgressBar.path = UIBezierPath(roundedRect: CGRect(x: progressBarOutline.frame.minX+3, y: progressBarOutline.frame.minY+3, width: montante, height: progressBarOutline.frame.height-6), cornerRadius: 1).cgPath
-        }
-        
-        SentaHelper.porcentagemGeralDoPrgoresso = SentaHelper.porcentagemGeralDoPrgoresso + 15
-        print("Porcentagem ja adquirida: \(SentaHelper.porcentagemGeralDoPrgoresso)")
-
-    }
-    
-    
-    
-    
-
-
 }
