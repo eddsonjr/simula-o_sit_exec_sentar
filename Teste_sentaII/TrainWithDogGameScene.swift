@@ -21,6 +21,9 @@ class TrainWithDogGameScene: SKScene {
     var progressBar: ProgressBarSpriteKit? //Barra de progresso
     
     
+    //Variavel de alerta
+    var alerta: SCLAlertView = SCLAlertView()
+    
     
     override func didMove(to view: SKView){
         
@@ -103,9 +106,15 @@ class TrainWithDogGameScene: SKScene {
         if SentaHelper.porcentagemGeralDoPrgoresso == 30 && SentaHelper.estagioTreinamento == SentatrainStage.somenteComPetisco.rawValue{
             print("[TELA DE PROGRESSO]: Adicionar comando de voz")
             SentaHelper.estagioTreinamento = SentatrainStage.somenteComVoz.rawValue
-            chamarCenaAnterior()
-            return
+            
+            //Desativando o botao de interacao para impedir o usuario de clicar e fazer mais porcentagens
+            self.ossoVazado1?.isUserInteractionEnabled = false
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+                self.chamarCenaAnterior()
+                return
 
+            })
         }
  
         
