@@ -18,6 +18,9 @@ class TrainWithDogGameScene: SKScene {
     let incrementoPorcentagem = CGFloat(10)
     
     
+    var animator = SKSpriteNode()
+    
+    
     var progressBar: ProgressBarSpriteKit? //Barra de progresso
     
     
@@ -44,7 +47,19 @@ class TrainWithDogGameScene: SKScene {
         self.progressBar?.atualizarProgressoBarra(porcengatem: CGFloat(SentaHelper.porcentagemGeralDoPrgoresso))
         
         
-       
+        
+        
+        
+        
+        
+        
+        //Teste
+        self.childNode(withName: "animator") as? SKSpriteNode
+        animator.animarSequencia(texturas: carregarSequenciaSpritesAnimacao(textureName: "Attack__00", quant: 9), intervalo: 0.3, quantRepeticoes: 10, completionHander: {
+            print("Sequencia de animacoes terminou!")
+        })
+        
+        
         
     }
     
