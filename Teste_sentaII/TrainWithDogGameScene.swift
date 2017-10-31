@@ -44,6 +44,7 @@ class TrainWithDogGameScene: SKScene {
         self.progressBar?.atualizarProgressoBarra(porcengatem: CGFloat(SentaHelper.porcentagemGeralDoPrgoresso))
         
         
+       
         
     }
     
@@ -175,4 +176,26 @@ class TrainWithDogGameScene: SKScene {
         self.view?.presentScene(gameScene, transition: fadeTransition)
         
     }
+    
+    
+    
+    
+    
+    
+    //Mark: Funcoes de teste de animacao
+    func carregarSequenciaSpritesAnimacao(textureName: String,quant: Int) -> [SKTexture] {
+        var textureArray = [SKTexture]()
+        
+        for i in 0...quant{
+            let alias = textureName.appending(String(i))
+            print(alias)
+            textureArray.append(SKTexture(imageNamed: alias))
+        }
+        
+        return textureArray
+    }
+    
+    
+    
+    
 }
