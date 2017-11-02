@@ -18,7 +18,8 @@ class TrainWithDogGameScene: SKScene {
     let incrementoPorcentagem = CGFloat(10)
     
     
-    var animator = SKSpriteNode()
+    var animator = SKSpriteNode() //Sprite para teste
+    let atlas_animacao: SKTextureAtlas = SKTextureAtlas(named: "Senta")
     
     
     var progressBar: ProgressBarSpriteKit? //Barra de progresso
@@ -54,11 +55,10 @@ class TrainWithDogGameScene: SKScene {
         
         
         //Teste
-        self.childNode(withName: "animator") as? SKSpriteNode
-        animator.animarSequencia(texturas: carregarSequenciaSpritesAnimacao(textureName: "Attack__00", quant: 9), intervalo: 0.3, quantRepeticoes: 10, completionHander: {
-            print("Sequencia de animacoes terminou!")
-        })
-        
+       self.animator = self.childNode(withName: "animator") as! SKSpriteNode
+       self.animator.animarSequencia(texturas: carregarSequenciaSpritesAnimacao(textureName: "Senta", quant: 9), intervalo: 0.1, quantRepeticoes: 5) {
+           print("Terminada a animacao")
+        }
         
         
     }
@@ -201,10 +201,10 @@ class TrainWithDogGameScene: SKScene {
     func carregarSequenciaSpritesAnimacao(textureName: String,quant: Int) -> [SKTexture] {
         var textureArray = [SKTexture]()
         
-        for i in 0...quant{
+        for i in 1...quant{
             let alias = textureName.appending(String(i))
             print(alias)
-            textureArray.append(SKTexture(imageNamed: alias))
+            textureArray.append(atlas_animacao.textureNamed(alias))
         }
         
         return textureArray
